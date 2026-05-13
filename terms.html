@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditions Générales d'Utilisation — PerfLog</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #1a1d24;
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+      --accent: #ff4d4d;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 24px 64px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p { margin-bottom: 16px; color: var(--text); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; color: var(--text); }
+    a { color: var(--accent); }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Retour</a>
+    <h1>Conditions Générales d'Utilisation</h1>
+    <p class="intro">Bienvenue sur PerfLog (« l'application », « le service »). Les présentes CGU régissent votre utilisation de l'application mobile PerfLog développée par <strong>Vincent BERHOUET</strong>. En téléchargeant, installant ou utilisant l'application, vous acceptez d'être lié par ces CGU.</p>
+
+    <h2>1. Description du service</h2>
+    <p>PerfLog est une application mobile de suivi d'entraînement de musculation, permettant à l'utilisateur de :</p>
+    <ul>
+      <li>Consulter un catalogue d'exercices curé (≈ 400 exercices)</li>
+      <li>Créer des programmes d'entraînement personnalisés</li>
+      <li>Enregistrer ses séances, séries, répétitions et charges</li>
+      <li>Visualiser ses progrès via des statistiques (PRs, tonnage, fréquence)</li>
+      <li>Sauvegarder ses données dans un cloud chiffré end-to-end (optionnel, opt-in)</li>
+      <li>Restaurer ses données sur un autre appareil</li>
+    </ul>
+    <p>L'application est disponible sur iOS et (futur) Android.</p>
+
+    <h2>2. Compte utilisateur</h2>
+    <h3>2.1 Mode local</h3>
+    <p>Par défaut, l'utilisation de PerfLog ne nécessite <strong>aucun compte</strong> ni inscription. Toutes les données restent localement sur votre appareil, chiffrées par les mécanismes système (Data Protection iOS, Keystore Android).</p>
+
+    <h3>2.2 Mode cloud (opt-in)</h3>
+    <p>Si vous activez la fonctionnalité <strong>Sauvegarde Cloud</strong>, vous devez :</p>
+    <ul>
+      <li>Fournir une adresse email valide (utilisée pour authentification OTP)</li>
+      <li>Définir une passphrase forte (≥ 12 caractères) que <strong>vous seul connaissez</strong></li>
+      <li>Conserver votre code de récupération à 12 mots (générés selon BIP-39)</li>
+    </ul>
+    <p><strong>Important</strong> : nous n'avons <strong>aucun accès</strong> à votre passphrase ni à votre code de récupération. Si vous les perdez, vos données chiffrées sont <strong>irrécupérables</strong> (architecture E2E). C'est le prix de la confidentialité.</p>
+
+    <h3>2.3 Sécurité du compte</h3>
+    <p>Vous êtes responsable de :</p>
+    <ul>
+      <li>La confidentialité de votre passphrase</li>
+      <li>La conservation de votre code de récupération (papier, gestionnaire de mots de passe, etc.)</li>
+      <li>L'accès à votre boîte email (utilisée pour les codes de connexion OTP)</li>
+    </ul>
+
+    <h2>3. Utilisation acceptable</h2>
+    <p>Vous vous engagez à :</p>
+    <ul>
+      <li>Utiliser l'application à des fins <strong>personnelles et non commerciales</strong></li>
+      <li>Ne pas tenter de contourner les mécanismes de sécurité (cert pinning, chiffrement)</li>
+      <li>Ne pas utiliser l'application pour stocker des données illégales</li>
+    </ul>
+    <p>Nous nous réservons le droit de suspendre tout compte cloud abusant manifestement du service (DoS, tentatives d'intrusion sur les API).</p>
+
+    <h2>4. Propriété intellectuelle</h2>
+    <h3>4.1 Application</h3>
+    <p>L'application PerfLog (code source, design, marque) reste la propriété exclusive de Vincent BERHOUET.</p>
+
+    <h3>4.2 Catalogue d'exercices</h3>
+    <p>Une partie du catalogue d'exercices intégré provient de <a href="https://github.com/yuhonas/free-exercise-db" target="_blank">free-exercise-db</a> sous licence <strong>MIT</strong> (attribution conservée dans le code source). Les traductions françaises, descriptions et adaptations sont la propriété de Vincent BERHOUET.</p>
+
+    <h3>4.3 Vos données</h3>
+    <p><strong>Vous restez seul propriétaire des données que vous saisissez</strong> (programmes, séances, mesures). Aucune cession ne nous est faite. À tout moment, vous pouvez :</p>
+    <ul>
+      <li>Exporter vos données au format JSON (Profil → Exporter)</li>
+      <li>Supprimer vos données (Paramètres → Supprimer toutes les données)</li>
+      <li>Supprimer votre compte cloud si activé (RGPD Art. 17)</li>
+    </ul>
+
+    <h2>5. Limitations de responsabilité</h2>
+    <h3>5.1 Conseil médical</h3>
+    <p><strong>PerfLog n'est pas un conseil médical.</strong> Les descriptions d'exercices sont à titre informatif. Consultez un professionnel de santé avant tout programme d'entraînement, notamment en cas de problème articulaire, cardiaque ou musculo-squelettique.</p>
+    <p>Nous déclinons toute responsabilité pour blessure résultant de l'utilisation des exercices proposés sans accompagnement professionnel.</p>
+
+    <h3>5.2 Disponibilité</h3>
+    <p>L'application est fournie « telle quelle » sans garantie de fonctionnement ininterrompu. Les services cloud peuvent connaître des indisponibilités temporaires (maintenance Supabase, OVH, etc.).</p>
+
+    <h3>5.3 Perte de données</h3>
+    <p>Bien que tout soit fait pour préserver vos données :</p>
+    <ul>
+      <li>En <strong>mode local</strong>, une perte/réinitialisation de l'appareil sans backup cloud activé entraînera une <strong>perte définitive</strong> des données</li>
+      <li>En <strong>mode cloud</strong>, l'oubli combiné de votre passphrase ET de votre code de récupération rendra vos sauvegardes <strong>irrécupérables</strong> (architecture E2E sans backdoor)</li>
+    </ul>
+    <p>Nous recommandons fortement :</p>
+    <ul>
+      <li>Activer la sauvegarde cloud si vous tenez à vos données</li>
+      <li>Stocker votre code de récupération en lieu sûr (papier dans coffre, 1Password, etc.)</li>
+      <li>Effectuer des exports JSON réguliers en complément</li>
+    </ul>
+
+    <h2>6. Données personnelles (RGPD)</h2>
+    <p>Le traitement de vos données personnelles est détaillé dans notre <a href="/privacy-policy">Politique de Confidentialité</a>.</p>
+    <p>Résumé :</p>
+    <ul>
+      <li>Aucun tracking analytique, aucune publicité</li>
+      <li>Données locales chiffrées par défaut</li>
+      <li>Sauvegarde cloud optionnelle, chiffrée end-to-end</li>
+      <li>Droits RGPD respectés (accès, rectification, suppression, portabilité, opposition)</li>
+      <li>Hébergement EU (Supabase Frankfurt)</li>
+    </ul>
+    <p>Pour exercer vos droits : <strong><a href="mailto:contact@perflog.app">contact@perflog.app</a></strong></p>
+
+    <h2>7. Suppression de compte et de données</h2>
+    <h3>7.1 Suppression locale</h3>
+    <p>Paramètres → Données → Supprimer toutes les données.</p>
+    <p>Effet : effacement immédiat et irréversible de la base locale + clé de chiffrement.</p>
+
+    <h3>7.2 Suppression compte cloud</h3>
+    <p>Paramètres → Sauvegarde cloud → Supprimer mon compte.</p>
+    <p>Effet : suppression sous <strong>30 jours</strong> (période de grâce pour annulation), puis purge effective avec audit RGPD Art. 30 (hash SHA-256 conservé 30 jours pour traçabilité légale).</p>
+
+    <h3>7.3 Inactivité prolongée</h3>
+    <p>Les comptes cloud inactifs depuis <strong>24 mois</strong> sont automatiquement marqués pour suppression avec <strong>30 jours de préavis</strong> (notification email). Vous pouvez prolonger via le bouton dédié dans Paramètres.</p>
+
+    <h2>8. Modification des CGU</h2>
+    <p>Nous pouvons modifier ces CGU pour refléter des évolutions légales ou fonctionnelles. Les modifications majeures vous seront notifiées via l'application ou par email (compte cloud uniquement).</p>
+    <p>La date « Dernière mise à jour » en haut de ce document indique la version en vigueur.</p>
+
+    <h2>9. Droit applicable</h2>
+    <p>Ces CGU sont régies par le <strong>droit français</strong>. Tout litige sera soumis aux tribunaux compétents du ressort de Vincent BERHOUET.</p>
+
+    <h2>10. Contact</h2>
+    <p>Pour toute question relative à ces CGU :</p>
+    <ul>
+      <li><strong>Vincent BERHOUET</strong></li>
+      <li>Email : <a href="mailto:contact@perflog.app">contact@perflog.app</a></li>
+    </ul>
+
+    <footer>
+      <p><strong>Dernière mise à jour : 13 mai 2026</strong></p>
+      <p>Ces CGU sont également disponibles dans l'application (Paramètres → Mentions légales).</p>
+    </footer>
+  </div>
+</body>
+</html>

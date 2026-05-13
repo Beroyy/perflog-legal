@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité — PerfLog</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #1a1d24;
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+      --accent: #ff4d4d;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 24px 64px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p { margin-bottom: 16px; color: var(--text); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; color: var(--text); }
+    code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--text-muted);
+    }
+    a { color: var(--accent); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--surface);
+      font-weight: 600;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Retour</a>
+    <h1>Politique de confidentialité</h1>
+    <p class="intro">PerfLog est une application de musculation conçue pour respecter une exigence simple : <strong>tes données t'appartiennent</strong>. Cette politique précise ce que cela signifie concrètement, et liste tes droits sous le RGPD.</p>
+
+    <h2>1. Local d'abord, cloud optionnel</h2>
+    <p><strong>Par défaut</strong>, toutes tes données — programmes, séances, sets, annotations, mensurations corporelles, records personnels, préférences — sont stockées <strong>uniquement</strong> sur ton appareil dans une base SQLCipher chiffrée. La clé de chiffrement est dans le trousseau iOS (Keychain) ou Android Keystore, jamais transmise.</p>
+    <p><strong>Optionnellement</strong> (V3+), tu peux activer la <strong>Sauvegarde Cloud</strong> dans Paramètres → Cloud pour synchroniser tes données entre plusieurs appareils ou les protéger contre la perte de téléphone. Cette fonctionnalité est <strong>désactivée par défaut</strong> et nécessite ton opt-in explicite.</p>
+    <p>Lorsque tu actives la Sauvegarde Cloud :</p>
+    <ul>
+      <li>Tes données sont <strong>chiffrées de bout en bout (E2E)</strong> côté téléphone <strong>avant</strong> tout envoi</li>
+      <li>Notre hébergeur (Supabase) ne voit qu'un blob opaque indéchiffrable, plus quelques métadonnées techniques (taille, timestamp, hash)</li>
+      <li>La clé de déchiffrement est dérivée d'une <strong>passphrase optionnelle</strong> ou d'un <strong>code de récupération obligatoire</strong> que toi seul·e possèdes</li>
+      <li>Nous <strong>ne pouvons jamais lire tes données</strong> — même si nous le voulions</li>
+    </ul>
+
+    <h2>2. Aucun traceur, aucune analyse comportementale</h2>
+    <p>PerfLog n'embarque aucun outil de tracking ou d'analyse comportementale : pas de Firebase, pas de Crashlytics, pas de Sentry, pas de Mixpanel, pas d'Amplitude, pas de Google Analytics, pas de Meta Pixel. Cette absence est vérifiée par un gate CI dédié qui inspecte les dépendances et le code source à chaque commit.</p>
+    <p>Cette règle s'applique également au module Cloud V3 : aucune télémétrie, aucun reporting de crash distant, aucun fingerprint.</p>
+
+    <h2>3. Aucune géolocalisation, aucune permission sensible</h2>
+    <p>L'application ne demande pas, ne capture pas et ne stocke pas de données de localisation. Aucune permission de géolocalisation, caméra, micro, photos, contacts, ou identifiant publicitaire (IDFA / Advertising ID) n'est jamais sollicitée.</p>
+
+    <h2>4. Données de santé (catégorie spéciale RGPD Art. 9)</h2>
+    <p>Tes mesures corporelles (poids, tour de bras, tour de cuisse, tour de thorax) peuvent être qualifiées de données de santé sous l'Article 9 du RGPD. PerfLog les traite :</p>
+    <ul>
+      <li><strong>Sur ton appareil exclusivement</strong> par défaut (exception « activité strictement personnelle ou domestique », Art. 2.2.c)</li>
+      <li><strong>Chiffrées de bout en bout</strong> si tu actives la Sauvegarde Cloud : ni Supabase ni nous ne pouvons les lire</li>
+    </ul>
+    <p>Le traitement reste conforme à l'Art. 9 RGPD car (a) il est limité à ton usage personnel et (b) le chiffrement E2E garantit que la donnée ne quitte jamais ta sphère de contrôle de manière lisible.</p>
+
+    <h2>5. Aucun identifiant tiers, aucun compte requis pour le local</h2>
+    <p>L'usage local de PerfLog ne nécessite <strong>aucun compte, aucun login</strong>. Pas d'IDFA (iOS), pas d'Advertising ID (Android), pas de connexion via Google / Apple / Facebook.</p>
+    <p><strong>Si et seulement si</strong> tu actives la Sauvegarde Cloud V3, tu créeras un compte basé sur ton <strong>adresse email</strong> (authentification par code à 8 chiffres — pas de mot de passe à mémoriser). Cette email reste l'unique donnée d'identification, conservée par notre hébergeur Supabase pour gérer l'authentification.</p>
+
+    <h2>6. Tes droits sous le RGPD</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (UE 2016/679), tu disposes des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès (Art. 15)</strong> — tes données sont visibles depuis chaque écran. Tu peux exporter l'intégralité en JSON via Profil → Exporter.</li>
+      <li><strong>Droit de rectification (Art. 16)</strong> — édition possible des sets validés, annotations, programmes, mensurations.</li>
+      <li><strong>Droit à l'effacement / oubli (Art. 17)</strong> — Profil → "Effacer toutes mes données" : suppression irréversible <strong>locale</strong>. Si Cloud activé : Cloud → "Supprimer mon compte" déclenche également la suppression cloud après un délai de <strong>30 jours</strong> (soft-delete) qui te permet d'annuler.</li>
+      <li><strong>Droit à la portabilité (Art. 20)</strong> — Profil → "Exporter mes données" : fichier JSON structuré contenant l'intégralité de tes données.</li>
+      <li><strong>Droit d'opposition (Art. 21)</strong> — le coach proactif peut être désactivé. La Sauvegarde Cloud peut être désactivée à tout moment.</li>
+      <li><strong>Droit à la limitation (Art. 18)</strong> — désactiver la Sauvegarde Cloud arrête le traitement par notre hébergeur sans supprimer ton compte.</li>
+    </ul>
+    <p>Aucune décision automatisée à effet juridique (Art. 22) n'est prise par l'application : les suggestions du coach sont indicatives et non contraignantes.</p>
+
+    <h2>7. Sous-traitants et services tiers</h2>
+    <h3>Pour l'usage local (par défaut)</h3>
+    <p>L'application en elle-même n'a <strong>aucun sous-traitant</strong> lorsque tu n'utilises que le mode local.</p>
+    <p>Lorsque tu installes PerfLog via Apple TestFlight ou l'App Store, Apple agit comme responsable de traitement indépendant pour les données qu'il collecte de son côté.</p>
+
+    <h3>Pour la Sauvegarde Cloud (si activée, opt-in)</h3>
+    <table>
+      <thead>
+        <tr><th>Sous-traitant</th><th>Rôle</th><th>Région</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Supabase Inc.</strong></td><td>Hébergement Auth, Storage chiffré, base de données</td><td>eu-central-1 (Frankfurt, Allemagne)</td></tr>
+        <tr><td><strong>Amazon Web Services Inc.</strong></td><td>Infrastructure cloud sous-jacente de Supabase</td><td>EU Central (Frankfurt)</td></tr>
+        <tr><td><strong>GitHub Inc. (Microsoft)</strong></td><td>Hosting des pages légales sur perflog.app</td><td>EU edge</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Toutes les données applicatives</strong> sont <strong>chiffrées E2E avant</strong> envoi à Supabase. Aucun de ces sous-traitants ne peut lire ton contenu.</p>
+
+    <h2>8. Conservation des données</h2>
+    <h3>Local</h3>
+    <p>Tes données locales restent sur ton appareil aussi longtemps que tu le souhaites. Désinstaller PerfLog supprime également la base de données locale.</p>
+
+    <h3>Cloud (si activée)</h3>
+    <p>Tes données chiffrées sont conservées tant que tu utilises l'app. Si tu n'effectues aucune synchronisation pendant <strong>24 mois consécutifs</strong>, ton compte cloud est automatiquement supprimé. Tu reçois des notifications email avant la suppression.</p>
+    <p>Suppression de compte explicite : 30 jours de soft-delete (annulable) puis purge totale.</p>
+
+    <h2>9. Sécurité</h2>
+    <p>PerfLog applique des mesures techniques et organisationnelles renforcées :</p>
+    <ul>
+      <li><strong>Chiffrement local</strong> : SQLCipher (clé en Keychain/Keystore)</li>
+      <li><strong>Chiffrement cloud E2E</strong> : AES-256-GCM avec dérivation Argon2id ou HKDF-SHA256</li>
+      <li><strong>Certificate pinning</strong> : double pin pour empêcher les attaques MitM</li>
+      <li><strong>Notification de violation (Art. 33)</strong> : procédure 72h CNIL formalisée</li>
+    </ul>
+
+    <h2>10. Contact et réclamations</h2>
+    <p>Pour toute question relative à cette politique :</p>
+    <ul>
+      <li><strong>Email</strong> : <a href="mailto:contact@perflog.app">contact@perflog.app</a></li>
+      <li><strong>Délai de réponse</strong> : 1 mois maximum (Art. 12(3) RGPD)</li>
+    </ul>
+    <p>Tu disposes également du droit d'introduire une réclamation auprès de la <strong>CNIL</strong> :</p>
+    <ul>
+      <li><a href="https://www.cnil.fr/fr/plaintes" target="_blank">https://www.cnil.fr/fr/plaintes</a></li>
+    </ul>
+
+    <h2>11. Mises à jour de cette politique</h2>
+    <p>Cette politique peut évoluer si l'application change. Toute modification majeure sera signalée au prochain démarrage de l'app et nécessitera ton consentement renouvelé si tu utilises la Sauvegarde Cloud.</p>
+
+    <footer>
+      <p><strong>Date de dernière mise à jour : 13 mai 2026</strong></p>
+      <p>Versions précédentes :</p>
+      <ul>
+        <li>12 mai 2026 — Activation des crons de purge automatique</li>
+        <li>11 mai 2026 — Ajout du module Sauvegarde Cloud V3</li>
+        <li>10 mai 2026 — Version V2 (local-only)</li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>
