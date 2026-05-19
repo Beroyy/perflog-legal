@@ -103,8 +103,15 @@
     <h1>Politique de confidentialité</h1>
     <p class="intro">PerfLog est une application de musculation conçue pour respecter une exigence simple : <strong>tes données t'appartiennent</strong>. Cette politique précise ce que cela signifie concrètement, et liste tes droits sous le RGPD.</p>
 
+    <h2>0. Responsable du traitement</h2>
+    <p>Conformément à l'<strong>Article 13.1.a</strong> du RGPD, le responsable du traitement des données collectées par PerfLog est :</p>
+    <p><strong>Vincent BERHOUET</strong><br>
+    Personne physique — projet personnel non commercial<br>
+    Email : <a href="mailto:contact@perflog.app">contact@perflog.app</a></p>
+    <p>Vincent BERHOUET assume également la fonction de <strong>point de contact pour la protection des données</strong> (équivalent fonctionnel DPO pour un traitement personnel, Art. 37 non obligatoire mais formalisé pour faciliter tes démarches RGPD).</p>
+
     <h2>1. Local d'abord, cloud optionnel</h2>
-    <p><strong>Par défaut</strong>, toutes tes données — programmes, séances, sets, annotations, mensurations corporelles, records personnels, préférences — sont stockées <strong>uniquement</strong> sur ton appareil dans une base SQLCipher chiffrée. La clé de chiffrement est dans le trousseau iOS (Keychain) ou Android Keystore, jamais transmise.</p>
+    <p><strong>Par défaut</strong>, toutes tes données — programmes, séances, sets, annotations, mensurations corporelles, records personnels, préférences — sont stockées <strong>uniquement</strong> sur ton appareil, dans le sandbox isolé de l'application (inaccessible aux autres apps). Le chiffrement au repos est assuré par le système d'exploitation : <strong>Data Protection AES-256</strong> sur iOS (clé liée au code de déverrouillage, dé-chiffrement géré par le Secure Enclave) et <strong>File-Based Encryption (FBE)</strong> sur Android 7+. Aucune donnée ne quitte ton appareil sans action explicite de ta part.</p>
     <p><strong>Optionnellement</strong> (V3+), tu peux activer la <strong>Sauvegarde Cloud</strong> dans Paramètres → Cloud pour synchroniser tes données entre plusieurs appareils ou les protéger contre la perte de téléphone. Cette fonctionnalité est <strong>désactivée par défaut</strong> et nécessite ton opt-in explicite.</p>
     <p>Lorsque tu actives la Sauvegarde Cloud :</p>
     <ul>
@@ -131,26 +138,53 @@
 
     <h2>5. Aucun identifiant tiers, aucun compte requis pour le local</h2>
     <p>L'usage local de PerfLog ne nécessite <strong>aucun compte, aucun login</strong>. Pas d'IDFA (iOS), pas d'Advertising ID (Android), pas de connexion via Google / Apple / Facebook.</p>
-    <p><strong>Si et seulement si</strong> tu actives la Sauvegarde Cloud V3, tu créeras un compte basé sur ton <strong>adresse email</strong> (authentification par code à 8 chiffres — pas de mot de passe à mémoriser). Cette email reste l'unique donnée d'identification, conservée par notre hébergeur Supabase pour gérer l'authentification.</p>
+    <p><strong>Si et seulement si</strong> tu actives la Sauvegarde Cloud V3, tu créeras un compte basé sur ton <strong>adresse email</strong> (authentification par lien magique ou code à 6 chiffres — pas de mot de passe à mémoriser). Cette email reste l'unique donnée d'identification, conservée par notre hébergeur Supabase pour gérer l'authentification.</p>
 
-    <h2>6. Tes droits sous le RGPD</h2>
-    <p>Conformément au Règlement Général sur la Protection des Données (UE 2016/679), tu disposes des droits suivants :</p>
+    <h2>6. Bases légales du traitement (Art. 6 et Art. 9 RGPD)</h2>
+    <p>Chaque traitement de données par PerfLog repose sur une base légale précise :</p>
+    <table>
+      <thead>
+        <tr><th>Traitement</th><th>Base légale</th><th>Référence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Stockage local (séances, mesures, programmes)</td><td><strong>Exception domestique</strong> — usage strictement personnel</td><td>Art. 2.2.c</td></tr>
+        <tr><td>Activation de la Sauvegarde Cloud</td><td><strong>Consentement explicite</strong> via opt-in dédié</td><td>Art. 6.1.a + Art. 9.2.a (santé)</td></tr>
+        <tr><td>Authentification email pour le Cloud</td><td><strong>Exécution d'une mesure pré-contractuelle</strong> (création du compte cloud à ta demande)</td><td>Art. 6.1.b</td></tr>
+        <tr><td>Conservation du blob chiffré tant que tu utilises l'app</td><td><strong>Exécution contractuelle du service Cloud</strong></td><td>Art. 6.1.b</td></tr>
+        <tr><td>Suppression automatique après 24 mois d'inactivité</td><td><strong>Obligation légale de minimisation</strong></td><td>Art. 5.1.e</td></tr>
+        <tr><td>Procédure de notification en cas de violation</td><td><strong>Obligation légale</strong></td><td>Art. 33</td></tr>
+      </tbody>
+    </table>
+    <p>Tu peux retirer ton consentement à la Sauvegarde Cloud à tout moment depuis Cloud → "Désactiver la sauvegarde cloud" — le retrait est immédiat et purge les données serveur sans affecter ton appareil local.</p>
+
+    <h2>7. Tes droits sous le RGPD</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (UE 2016/679), tu disposes des droits suivants. Pour les données <strong>locales</strong>, ils sont exerçables directement depuis l'app. Pour les données <strong>cloud</strong> (si activé), ils sont exerçables également depuis l'app, sans avoir besoin de nous contacter :</p>
     <ul>
       <li><strong>Droit d'accès (Art. 15)</strong> — tes données sont visibles depuis chaque écran. Tu peux exporter l'intégralité en JSON via Profil → Exporter.</li>
       <li><strong>Droit de rectification (Art. 16)</strong> — édition possible des sets validés, annotations, programmes, mensurations.</li>
-      <li><strong>Droit à l'effacement / oubli (Art. 17)</strong> — Profil → "Effacer toutes mes données" : suppression irréversible <strong>locale</strong>. Si Cloud activé : Cloud → "Supprimer mon compte" déclenche également la suppression cloud après un délai de <strong>30 jours</strong> (soft-delete) qui te permet d'annuler.</li>
+      <li><strong>Droit à l'effacement / oubli (Art. 17)</strong> — Profil → "Effacer toutes mes données" : suppression irréversible <strong>locale</strong>. Si Cloud activé : Cloud → "Supprimer mon compte" déclenche également la suppression cloud après un délai de <strong>30 jours</strong> (soft-delete) qui te permet d'annuler si tu changes d'avis.</li>
       <li><strong>Droit à la portabilité (Art. 20)</strong> — Profil → "Exporter mes données" : fichier JSON structuré contenant l'intégralité de tes données.</li>
-      <li><strong>Droit d'opposition (Art. 21)</strong> — le coach proactif peut être désactivé. La Sauvegarde Cloud peut être désactivée à tout moment.</li>
-      <li><strong>Droit à la limitation (Art. 18)</strong> — désactiver la Sauvegarde Cloud arrête le traitement par notre hébergeur sans supprimer ton compte.</li>
+      <li><strong>Droit d'opposition (Art. 21)</strong> — le coach proactif peut être désactivé. La Sauvegarde Cloud peut être désactivée à tout moment (Cloud → "Désactiver la sauvegarde cloud"), qui purge immédiatement les données côté serveur tout en conservant ton appareil local intact.</li>
+      <li><strong>Droit à la limitation (Art. 18)</strong> — désactiver la Sauvegarde Cloud arrête le traitement par notre hébergeur sans supprimer ton compte (utile si tu hésites).</li>
     </ul>
     <p>Aucune décision automatisée à effet juridique (Art. 22) n'est prise par l'application : les suggestions du coach sont indicatives et non contraignantes.</p>
 
-    <h2>7. Sous-traitants et services tiers</h2>
+    <h2>8. Mineurs (Art. 8 RGPD + Loi Informatique et Libertés Art. 45)</h2>
+    <p>PerfLog est destiné à un usage adulte ou adolescent encadré. Conformément à la loi française :</p>
+    <ul>
+      <li><strong>Moins de 15 ans</strong> : l'utilisation nécessite le consentement préalable d'un titulaire de l'autorité parentale, en particulier pour l'activation de la Sauvegarde Cloud. Le mode local-only reste utilisable sous supervision parentale.</li>
+      <li><strong>15 ans et plus</strong> : tu peux utiliser l'application et activer le Cloud de manière autonome.</li>
+    </ul>
+    <p>Si tu détectes qu'un mineur sous 15 ans utilise PerfLog sans autorisation parentale via la Sauvegarde Cloud, contacte <a href="mailto:contact@perflog.app">contact@perflog.app</a> — nous supprimerons le compte sans délai conformément à l'Art. 17.</p>
+    <p>Aucun ciblage marketing, aucun traceur publicitaire ni profilage comportemental n'est appliqué, y compris si l'utilisateur est mineur (cf. Section 2).</p>
+
+    <h2>9. Sous-traitants et services tiers</h2>
     <h3>Pour l'usage local (par défaut)</h3>
     <p>L'application en elle-même n'a <strong>aucun sous-traitant</strong> lorsque tu n'utilises que le mode local.</p>
-    <p>Lorsque tu installes PerfLog via Apple TestFlight ou l'App Store, Apple agit comme responsable de traitement indépendant pour les données qu'il collecte de son côté.</p>
+    <p>Lorsque tu installes PerfLog via Apple TestFlight, l'App Store ou Google Play, Apple et Google agissent comme responsables de traitement indépendants pour les données qu'ils collectent de leur côté (rapports de crash anonymisés, télémétrie de bêta-test). Ces traitements sont régis par leurs politiques respectives et ne sont pas sous notre contrôle.</p>
 
     <h3>Pour la Sauvegarde Cloud (si activée, opt-in)</h3>
+    <p>Si tu actives la Sauvegarde Cloud V3, nous utilisons les sous-traitants suivants pour stocker ton blob chiffré :</p>
     <table>
       <thead>
         <tr><th>Sous-traitant</th><th>Rôle</th><th>Région</th></tr>
@@ -158,48 +192,70 @@
       <tbody>
         <tr><td><strong>Supabase Inc.</strong></td><td>Hébergement Auth, Storage chiffré, base de données</td><td>eu-central-1 (Frankfurt, Allemagne)</td></tr>
         <tr><td><strong>Amazon Web Services Inc.</strong></td><td>Infrastructure cloud sous-jacente de Supabase</td><td>EU Central (Frankfurt)</td></tr>
-        <tr><td><strong>GitHub Inc. (Microsoft)</strong></td><td>Hosting des pages légales sur perflog.app</td><td>EU edge</td></tr>
+        <tr><td><strong>Resend Inc.</strong></td><td>Relai SMTP pour l'envoi du code d'authentification (email uniquement)</td><td>eu-west-1 (Irlande)</td></tr>
+        <tr><td><strong>GitHub Inc. (Microsoft)</strong></td><td>Hosting des pages légales et fichier de validation Universal Links / App Links sur perflog.app</td><td>EU edge</td></tr>
       </tbody>
     </table>
-    <p><strong>Toutes les données applicatives</strong> sont <strong>chiffrées E2E avant</strong> envoi à Supabase. Aucun de ces sous-traitants ne peut lire ton contenu.</p>
+    <p><strong>Toutes les données applicatives</strong> (séances, mesures, programmes) sont <strong>chiffrées E2E avant</strong> envoi à Supabase. Aucun de ces sous-traitants ne peut lire ton contenu. Ils ne voient que :</p>
+    <ul>
+      <li>Ton adresse email (Supabase Auth, Resend SMTP)</li>
+      <li>Un blob chiffré opaque (Supabase Storage)</li>
+      <li>Des métadonnées techniques (timestamps, taille, hashes)</li>
+    </ul>
 
-    <h2>8. Conservation des données</h2>
+    <h3>Transferts hors UE et arrêt Schrems II</h3>
+    <p>Tous les <strong>traitements applicatifs ont lieu dans l'Union Européenne</strong> (Allemagne pour Supabase + AWS, Irlande pour Resend). Cependant, certains de ces sous-traitants ont une <strong>maison-mère aux États-Unis</strong> (Supabase Inc., Amazon Web Services Inc., Resend Inc.).</p>
+    <p>Conformément à l'<strong>arrêt Schrems II</strong> (CJUE, 16 juillet 2020) et au <strong>Data Privacy Framework</strong> (DPF, juillet 2023) :</p>
+    <ul>
+      <li>Toutes les infrastructures de traitement sont <strong>physiquement localisées en UE</strong></li>
+      <li>Les transferts intra-groupe vers la maison-mère US sont couverts par les <strong>Clauses Contractuelles Types (CCT) de la Commission Européenne</strong> (Décision 2021/914)</li>
+      <li>Le chiffrement E2E rend les données applicatives <strong>inaccessibles</strong> au sous-traitant, y compris en cas de demande d'accès par une autorité tierce (FISA 702, Cloud Act). Seules l'adresse email et les métadonnées techniques sont théoriquement accessibles</li>
+      <li>Supabase, AWS et Resend sont certifiés DPF (Data Privacy Framework) USA-UE</li>
+    </ul>
+    <p>Le registre détaillé des traitements et les CCT applicables sont consultables sur demande (<a href="mailto:contact@perflog.app">contact@perflog.app</a>).</p>
+
+    <h2>10. Conservation des données</h2>
     <h3>Local</h3>
     <p>Tes données locales restent sur ton appareil aussi longtemps que tu le souhaites. Désinstaller PerfLog supprime également la base de données locale.</p>
 
     <h3>Cloud (si activée)</h3>
-    <p>Tes données chiffrées sont conservées tant que tu utilises l'app. Si tu n'effectues aucune synchronisation pendant <strong>24 mois consécutifs</strong>, ton compte cloud est automatiquement supprimé. Tu reçois des notifications email avant la suppression.</p>
-    <p>Suppression de compte explicite : 30 jours de soft-delete (annulable) puis purge totale.</p>
+    <p>Tes données chiffrées sont conservées sur Supabase tant que tu utilises l'app. Si tu n'effectues aucune synchronisation pendant <strong>24 mois consécutifs</strong>, ton compte cloud est automatiquement supprimé (limitation du stockage, Art. 5(1)(e) RGPD). Tu reçois 3 emails de notification 60, 30 et 7 jours avant la suppression. Tu peux également activer manuellement l'option <strong>« Conservation prolongée »</strong> dans Cloud → Paramètres, avec une re-confirmation tous les 24 mois.</p>
+    <p>Suppression de compte explicite : 30 jours de soft-delete (annulable) puis purge totale incluant ton blob, ton email et l'historique d'authentification.</p>
 
-    <h2>9. Sécurité</h2>
+    <h2>11. Sécurité</h2>
     <p>PerfLog applique des mesures techniques et organisationnelles renforcées :</p>
     <ul>
-      <li><strong>Chiffrement local</strong> : SQLCipher (clé en Keychain/Keystore)</li>
-      <li><strong>Chiffrement cloud E2E</strong> : AES-256-GCM avec dérivation Argon2id ou HKDF-SHA256</li>
-      <li><strong>Certificate pinning</strong> : double pin pour empêcher les attaques MitM</li>
-      <li><strong>Notification de violation (Art. 33)</strong> : procédure 72h CNIL formalisée</li>
+      <li><strong>Confidentialité locale</strong> : sandbox app + chiffrement OS au repos (Data Protection AES-256 iOS / File-Based Encryption Android)</li>
+      <li><strong>Chiffrement cloud E2E</strong> : AES-256-GCM avec dérivation Argon2id (RFC 9106) ou HKDF-SHA256 (RFC 5869)</li>
+      <li><strong>Certificate pinning</strong> : double pin (leaf cert Supabase + backup root Let's Encrypt) pour empêcher les attaques MitM</li>
+      <li><strong>Modèle de menace documenté</strong> et procédure de notification de violation (Art. 33) : 72h CNIL formalisée</li>
     </ul>
+    <p><strong>Limitation acceptée</strong> : PerfLog suppose un appareil non compromis (non jailbreaké iOS, non rooté Android). Si ton appareil est compromis au niveau root, la confidentialité ne peut pas être garantie.</p>
 
-    <h2>10. Contact et réclamations</h2>
-    <p>Pour toute question relative à cette politique :</p>
+    <h2>12. Contact et réclamations</h2>
+    <p>Pour toute question relative à cette politique, contacte le responsable du traitement :</p>
     <ul>
+      <li><strong>Vincent BERHOUET</strong> (responsable du traitement et point de contact protection des données)</li>
       <li><strong>Email</strong> : <a href="mailto:contact@perflog.app">contact@perflog.app</a></li>
       <li><strong>Délai de réponse</strong> : 1 mois maximum (Art. 12(3) RGPD)</li>
     </ul>
-    <p>Tu disposes également du droit d'introduire une réclamation auprès de la <strong>CNIL</strong> :</p>
+    <p>Tu disposes également du droit d'introduire une réclamation auprès de la <strong>CNIL</strong> (autorité française de protection des données) si tu estimes que le traitement de tes données viole le RGPD :</p>
     <ul>
       <li><a href="https://www.cnil.fr/fr/plaintes" target="_blank">https://www.cnil.fr/fr/plaintes</a></li>
     </ul>
 
-    <h2>11. Mises à jour de cette politique</h2>
-    <p>Cette politique peut évoluer si l'application change. Toute modification majeure sera signalée au prochain démarrage de l'app et nécessitera ton consentement renouvelé si tu utilises la Sauvegarde Cloud.</p>
+    <h2>13. Mises à jour de cette politique</h2>
+    <p>Cette politique peut évoluer si l'application change. Toute modification majeure (notamment ajout d'un sous-traitant ou changement de finalité) sera signalée au prochain démarrage de l'app et nécessitera ton consentement renouvelé si tu utilises la Sauvegarde Cloud.</p>
+    <p>La date de dernière révision est affichée ci-dessous et accessible dans l'app via Profil → Confidentialité.</p>
 
     <footer>
-      <p><strong>Date de dernière mise à jour : 13 mai 2026</strong></p>
+      <p><strong>Date de dernière mise à jour : 17 mai 2026</strong></p>
       <p>Versions précédentes :</p>
       <ul>
-        <li>12 mai 2026 — Activation des crons de purge automatique</li>
-        <li>11 mai 2026 — Ajout du module Sauvegarde Cloud V3</li>
+        <li>17 mai 2026 — Renforcement RGPD : ajout §0 (identité responsable du traitement Vincent BERHOUET), §6 (bases légales Art. 6 + Art. 9 par traitement), §8 (mineurs Art. 8 RGPD + LIL Art. 45), §9 — Schrems II / DPF / CCT</li>
+        <li>13 mai 2026 — Publication initiale des pages légales publiques</li>
+        <li>12 mai 2026 — Activation des crons de purge automatique (suppression effective à T+30j ; rétention 24 mois d'inactivité)</li>
+        <li>11 mai 2026 — Ajout du module Sauvegarde Cloud V3 (opt-in, E2E, Supabase EU)</li>
         <li>10 mai 2026 — Version V2 (local-only)</li>
       </ul>
     </footer>
