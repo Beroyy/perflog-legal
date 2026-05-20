@@ -3,99 +3,354 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PerfLog — Pages légales</title>
+  <title>PerfLog — Suivi musculation premium, local-first, sans tracking</title>
+  <meta name="description" content="Application de suivi d'entraînement de musculation pour utilisateurs avancés. Tes données t'appartiennent : local-first, chiffrement E2E optionnel, zéro tracker, RGPD natif.">
+  <meta property="og:title" content="PerfLog — Suivi musculation premium">
+  <meta property="og:description" content="Local-first, E2E, zéro tracker. Tes données t'appartiennent.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://perflog.app/">
+  <meta property="og:image" content="https://perflog.app/screenshots/logo.png">
+  <link rel="icon" href="screenshots/logo.png" type="image/png">
   <style>
     :root {
-      --bg: #0f1115;
+      --bg: #0A0A0A;
+      --bg-elevated: #14161C;
       --surface: #1a1d24;
-      --text: #e8eaed;
+      --text: #F5F5F5;
       --text-muted: #9aa0a6;
-      --accent: #ff4d4d;
+      --accent: #C1121F;
+      --accent-hover: #d61627;
       --border: #2a2e36;
+      --green: #10b981;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 48px 24px;
+      -webkit-font-smoothing: antialiased;
     }
     .container {
-      max-width: 640px;
-      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-      font-weight: 700;
+
+    /* ─── HERO ─────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
     }
-    .subtitle {
+    .hero img.logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 48px;
+      max-width: 640px;
+      margin: 0 auto 40px;
     }
-    .card {
+    .hero .ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--text);
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .btn-disabled {
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+    .btn:active { transform: scale(0.98); }
+
+    /* ─── SECTION GENERIC ──────────────────────────── */
+    section {
+      padding: 64px 0;
+    }
+    section.alt { background: var(--bg-elevated); }
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    /* ─── FEATURES GRID ────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .feature {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px;
-      margin-bottom: 16px;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .card:hover {
-      transform: translateY(-2px);
+    .feature:hover {
       border-color: var(--accent);
+      transform: translateY(-2px);
     }
-    .card a {
-      text-decoration: none;
-      color: var(--text);
-      display: block;
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
     }
-    .card-title {
-      font-size: 1.25rem;
+    .feature h3 {
+      font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .card-desc {
+    .feature p {
       color: var(--text-muted);
       font-size: 0.95rem;
     }
-    footer {
-      margin-top: 64px;
-      color: var(--text-muted);
-      font-size: 0.85rem;
+
+    /* ─── SCREENSHOTS ──────────────────────────────── */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .screenshot {
       text-align: center;
     }
-    .accent { color: var(--accent); }
+    .screenshot img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+    }
+    .screenshot-caption {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ─── PRIVACY SPOTLIGHT ────────────────────────── */
+    .privacy-spotlight {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+    .privacy-spotlight .checkmarks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+      text-align: left;
+    }
+    .checkmark {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
+    .checkmark .icon {
+      color: var(--green);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    footer .links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+    footer .copyright {
+      text-align: center;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- HERO -->
+  <div class="hero container">
+    <img src="screenshots/logo.png" alt="Logo PerfLog" class="logo">
     <h1>Perf<span class="accent">Log</span></h1>
-    <p class="subtitle">Pages légales — Application de suivi musculation</p>
-
-    <div class="card">
-      <a href="/privacy-policy">
-        <div class="card-title">Politique de confidentialité</div>
-        <div class="card-desc">Comment vos données sont traitées (RGPD)</div>
-      </a>
+    <p class="tagline">
+      Suivi d'entraînement de musculation premium —
+      <strong>local-first</strong>, sans tracker, RGPD natif.
+      Tes données t'appartiennent.
+    </p>
+    <div class="ctas">
+      <a class="btn btn-disabled" href="#" aria-disabled="true">📱 Bientôt sur l'App Store</a>
+      <a class="btn btn-disabled" href="#" aria-disabled="true">🤖 Bientôt sur Google Play</a>
     </div>
-
-    <div class="card">
-      <a href="/terms">
-        <div class="card-title">Conditions Générales d'Utilisation</div>
-        <div class="card-desc">CGU régissant l'usage de l'application</div>
-      </a>
-    </div>
-
-    <footer>
-      © 2026 Vincent BERHOUET — <a href="mailto:contact@perflog.app" style="color: var(--text-muted);">contact@perflog.app</a>
-    </footer>
   </div>
+
+  <!-- POURQUOI -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Pourquoi PerfLog ?</h2>
+      <p class="section-subtitle">
+        Une appli de musculation conçue par un dev qui en a marre que ses données soient le produit.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>100 % local par défaut</h3>
+          <p>Toutes tes séances, programmes et mensurations restent sur ton appareil dans le sandbox chiffré OS. Pas de cloud forcé.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">☁️</div>
+          <h3>Cloud E2E optionnel</h3>
+          <p>Si tu actives la sauvegarde cloud, tout est chiffré bout-à-bout (Argon2id + AES-256) avant envoi. Le serveur ne voit qu'un blob opaque.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚫</div>
+          <h3>Zéro tracker</h3>
+          <p>Pas de Firebase, Crashlytics, Mixpanel, Google Analytics. Vérifié par un audit CI à chaque commit.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🇪🇺</div>
+          <h3>RGPD natif</h3>
+          <p>8 droits RGPD exerçables depuis l'app. Hébergement EU (Supabase Frankfurt). Politique de confidentialité publique et claire.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏋️</div>
+          <h3>Pensé musculation</h3>
+          <p>413 exercices référencés, programmes structurés (PPL, 5x5, full body…), records personnels auto-détectés, analyse historique.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <h3>Set logging fluide</h3>
+          <p>Validation 1-tap, timer de repos auto avec son + vibration, stepper accéléré pour le poids, annotations rapides.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="alt">
+    <div class="container">
+      <h2 class="section-title">Aperçu</h2>
+      <p class="section-subtitle">Interface native iOS et Android — toujours en thème sombre, focus sur l'essentiel.</p>
+      <div class="screenshots">
+        <div class="screenshot">
+          <img src="screenshots/seance.png" alt="Écran de séance active">
+          <div class="screenshot-caption">Séance active</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/analyse.png" alt="Graphiques d'analyse">
+          <div class="screenshot-caption">Analyse historique</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/coach.png" alt="Feed du coach">
+          <div class="screenshot-caption">Coach &amp; articles</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/cloud.png" alt="Paramètres cloud">
+          <div class="screenshot-caption">Sauvegarde cloud E2E</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY SPOTLIGHT -->
+  <section>
+    <div class="container">
+      <div class="privacy-spotlight">
+        <h2 class="section-title">Privacy by design</h2>
+        <p class="section-subtitle" style="margin-bottom: 0;">
+          Aucune métrique d'usage transmise. Aucun identifiant publicitaire. Aucun crash report distant.
+        </p>
+        <div class="checkmarks">
+          <div class="checkmark"><span class="icon">✓</span><span>Aucun SDK tiers analytics / crashes / pubs intégré (audit CI enforced)</span></div>
+          <div class="checkmark"><span class="icon">✓</span><span>Pas de demande de géolocalisation, caméra, micro, contacts</span></div>
+          <div class="checkmark"><span class="icon">✓</span><span>Données de santé (poids, mensurations) traitées sous Art. 9 RGPD</span></div>
+          <div class="checkmark"><span class="icon">✓</span><span>Chiffrement cloud E2E (Argon2id + AES-256-GCM, RFC 9106)</span></div>
+          <div class="checkmark"><span class="icon">✓</span><span>Certificate pinning HTTPS (SHA-256 sur leaf cert + 2 backups Let's Encrypt)</span></div>
+          <div class="checkmark"><span class="icon">✓</span><span>Suppression de compte complète en 30 jours (soft-delete annulable)</span></div>
+        </div>
+        <a class="btn btn-secondary" href="/privacy-policy">Lire la politique de confidentialité</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="links">
+        <a href="/privacy-policy">Confidentialité</a>
+        <a href="/terms">CGU</a>
+        <a href="mailto:contact@perflog.app">Contact</a>
+      </div>
+      <p class="copyright">
+        © 2026 Vincent BERHOUET — Projet personnel non commercial.
+        Email : <a href="mailto:contact@perflog.app">contact@perflog.app</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
