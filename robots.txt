@@ -1,0 +1,9 @@
+# PerfLog — robots.txt
+# Pages publiques marketing + légales hébergées sur perflog.app
+
+User-agent: *
+Allow: /
+
+# Pas de zone privée à exclure (tout est public marketing/légal)
+
+Sitemap: https://perflog.app/sitemap.xml

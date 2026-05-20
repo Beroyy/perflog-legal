@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PerfLog — FAQ : sécurité, données, fonctionnement</title>
+  <meta name="description" content="Réponses aux questions fréquentes sur PerfLog : confidentialité, sauvegarde cloud E2E, récupération de compte, jailbreak, format de données.">
+  <meta property="og:title" content="PerfLog — FAQ">
+  <meta property="og:description" content="Tout ce que tu te demandes sur PerfLog : sécurité, cloud, récupération, données.">
+  <meta property="og:image" content="https://perflog.app/og-image.png">
+  <meta property="og:url" content="https://perflog.app/faq.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="screenshots/logo.png" type="image/png">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --surface: #1a1d24;
+      --text: #F5F5F5;
+      --text-muted: #9aa0a6;
+      --accent: #C1121F;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 48px 24px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    h1 .accent { color: var(--accent); }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    .category-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 40px 0 8px;
+      letter-spacing: -0.01em;
+    }
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    details:hover { border-color: var(--accent); }
+    details[open] { border-color: var(--accent); }
+    summary {
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      padding-right: 32px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after {
+      content: '−';
+    }
+    .answer {
+      margin-top: 16px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+    .answer p { margin-bottom: 12px; }
+    .answer p:last-child { margin-bottom: 0; }
+    .answer a { color: var(--accent); }
+    .answer code {
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    footer a { color: var(--text-muted); transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Retour à l'accueil</a>
+    <h1>FAQ — Perf<span class="accent">Log</span></h1>
+    <p class="intro">Les questions les plus posées sur le fonctionnement, la confidentialité et la sauvegarde de PerfLog.</p>
+
+    <!-- ─── CONFIDENTIALITÉ ─────────────────────────── -->
+    <div class="category-title">🔒 Confidentialité &amp; données</div>
+
+    <details>
+      <summary>Mes données restent-elles vraiment sur mon téléphone ?</summary>
+      <div class="answer">
+        <p><strong>Oui, par défaut.</strong> Toutes tes séances, programmes, mensurations et préférences sont stockées dans la base SQLite locale de l'app, dans le sandbox isolé chiffré par ton OS (Data Protection AES-256 sur iOS, File-Based Encryption sur Android 7+).</p>
+        <p>Aucune donnée ne quitte ton appareil tant que tu n'actives pas explicitement la <strong>Sauvegarde Cloud</strong> dans Paramètres → Cloud.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>PerfLog utilise-t-il des trackers ou de l'analytique ?</summary>
+      <div class="answer">
+        <p><strong>Non, zéro.</strong> Pas de Firebase, pas de Crashlytics, pas de Sentry, pas de Mixpanel, pas de Google Analytics, pas de Meta Pixel. Aucune métrique d'usage ni rapport de crash n'est transmis.</p>
+        <p>Cette absence est <strong>vérifiée à chaque commit</strong> par deux scripts CI (<code>check_no_tracking.dart</code> + <code>check_no_network_imports.dart</code>) qui bloquent toute introduction accidentelle d'un tel SDK.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>L'app demande-t-elle des permissions sensibles ?</summary>
+      <div class="answer">
+        <p><strong>Non.</strong> Aucune demande de géolocalisation, caméra, micro, photos, contacts, ou identifiant publicitaire (IDFA iOS / Advertising ID Android). Les seules permissions Android demandées :</p>
+        <ul style="margin-left: 20px;">
+          <li><code>INTERNET</code> — requise pour la Sauvegarde Cloud (si activée)</li>
+          <li><code>POST_NOTIFICATIONS</code> — pour les rappels de timer de repos</li>
+          <li><code>RECEIVE_BOOT_COMPLETED</code> — pour reprogrammer les rappels après reboot</li>
+          <li><code>VIBRATE</code> — feedback haptique fin de timer</li>
+          <li><code>USE_EXACT_ALARM</code> — précision du timer de repos</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ─── SAUVEGARDE CLOUD ────────────────────────── -->
+    <div class="category-title">☁️ Sauvegarde cloud</div>
+
+    <details>
+      <summary>Comment fonctionne le chiffrement E2E de la sauvegarde ?</summary>
+      <div class="answer">
+        <p>Quand tu actives la sauvegarde cloud, l'app dérive une <strong>clé de chiffrement</strong> à partir de ta passphrase via <strong>Argon2id</strong> (RFC 9106, paramètres t=3, m=64MB, p=4 — anti-GPU brute force).</p>
+        <p>Tes données sont chiffrées avec <strong>AES-256-GCM</strong> côté téléphone <strong>avant</strong> tout envoi. Notre hébergeur (Supabase, Frankfurt EU) ne voit qu'un blob opaque indéchiffrable.</p>
+        <p>Nous ne pouvons jamais lire tes données — la clé n'existe que sur ton appareil.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Que se passe-t-il si j'oublie ma passphrase ?</summary>
+      <div class="answer">
+        <p>L'app génère pour toi un <strong>code de récupération de 12 mots BIP39</strong> (standard Bitcoin, 256 bits d'entropie) au moment de l'activation cloud. Tu peux le voir à tout moment depuis Paramètres → Cloud → "Mon code de récupération".</p>
+        <p>Si tu oublies ta passphrase, ce code te permet de restaurer ton compte sur un nouvel appareil ou de re-déchiffrer ta sauvegarde.</p>
+        <p>⚠️ <strong>Si tu perds les deux</strong> (passphrase ET code de récupération) sans avoir noté tes 12 mots ailleurs, tes données cloud sont perdues définitivement — par design, nous n'avons aucun moyen de les récupérer.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Puis-je restaurer mes données sur un nouvel iPhone / Android ?</summary>
+      <div class="answer">
+        <p><strong>Oui</strong>, tant que tu as ton email + (ta passphrase OU ton code de récupération 12 mots).</p>
+        <p>Sur le nouvel appareil : Paramètres → Cloud → "J'ai déjà un compte — restaurer" → entrer l'email → code OTP par mail → passphrase ou code 12 mots → restauration en quelques secondes.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Combien de temps mes données restent-elles en ligne ?</summary>
+      <div class="answer">
+        <p>Tant que tu utilises l'app. Si tu n'effectues <strong>aucune synchronisation pendant 24 mois consécutifs</strong>, ton compte cloud est automatiquement supprimé (minimisation RGPD Art. 5.1.e). Tu reçois 3 emails de notification avant : 60 jours, 30 jours, et 7 jours avant la purge.</p>
+        <p>Tu peux aussi activer l'option <strong>"Conservation prolongée"</strong> dans Cloud → Paramètres si tu veux éviter cette purge auto.</p>
+      </div>
+    </details>
+
+    <!-- ─── GÉNÉRAL ────────────────────────────────── -->
+    <div class="category-title">⚙️ Général</div>
+
+    <details>
+      <summary>L'app fonctionne-t-elle hors-ligne ?</summary>
+      <div class="answer">
+        <p><strong>Oui, intégralement.</strong> Toutes les fonctionnalités principales (création de programme, log de séance, analyse historique, mensurations) fonctionnent sans connexion internet.</p>
+        <p>La connexion n'est requise que pour la Sauvegarde Cloud (si activée).</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Que se passe-t-il si je désinstalle PerfLog ?</summary>
+      <div class="answer">
+        <p>La base locale est supprimée avec l'app (comportement OS standard). Si tu n'as pas activé la sauvegarde cloud, <strong>tes données sont perdues</strong>.</p>
+        <p>Avant désinstallation, pense à utiliser <strong>Profil → Exporter mes données</strong> pour générer un fichier JSON portable que tu peux importer sur un nouveau device.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Mon téléphone est jailbreaké / rooté. Est-ce un problème ?</summary>
+      <div class="answer">
+        <p>Sur un device compromis (jailbreak iOS ou root Android), un attaquant ayant l'accès root peut dumper la mémoire du processus PerfLog et y récupérer en clair les tokens, clés et passphrase pendant les sessions actives.</p>
+        <p>Cette limite est <strong>fondamentale</strong> à toute app crypto consumer — aucune app fitness sur le marché ne mitige ce scénario. PerfLog suppose un device non compromis. Si ce n'est pas ton cas, la confidentialité ne peut pas être pleinement garantie.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Puis-je exporter mes données pour les utiliser ailleurs ?</summary>
+      <div class="answer">
+        <p><strong>Oui, à tout moment.</strong> Profil → Exporter mes données → fichier JSON structuré contenant l'intégralité de tes séances, programmes, mensurations, records personnels.</p>
+        <p>C'est un droit fondamental RGPD (Art. 20 — droit à la portabilité). Le format est documenté et lisible par n'importe quel outil capable de parser du JSON.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Combien coûte PerfLog ?</summary>
+      <div class="answer">
+        <p>PerfLog est <strong>gratuit</strong>. Pas d'abonnement, pas d'achats in-app, pas de publicité.</p>
+        <p>C'est un projet personnel non commercial de Vincent BERHOUET. Le coût d'hébergement (Supabase EU + GitHub Pages) est pris en charge personnellement.</p>
+      </div>
+    </details>
+
+    <!-- ─── TECHNIQUE ───────────────────────────────── -->
+    <div class="category-title">🔧 Technique</div>
+
+    <details>
+      <summary>Sur quelles versions iOS / Android PerfLog tourne-t-il ?</summary>
+      <div class="answer">
+        <p><strong>iOS 14+</strong> (iPhone 6S et plus récent)<br>
+        <strong>Android 5.0+ / API 21+</strong> (la grande majorité des appareils en circulation depuis 2014)</p>
+        <p>Les fonctionnalités spécifiques Android 12+ (nouveau Splash Screen API) sont supportées si disponibles, fallback gracieux sinon.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Le code source est-il public ?</summary>
+      <div class="answer">
+        <p>Le repo applicatif est <strong>privé</strong> pour l'instant. Les seuls artefacts publics sont les <strong>documents légaux</strong> hébergés ici (privacy policy + CGU) et cette FAQ.</p>
+        <p>Une partie de la doc technique (audit no-tracking, threat model) peut être partagée sur demande à <a href="mailto:contact@perflog.app">contact@perflog.app</a>.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Qui maintient PerfLog ?</summary>
+      <div class="answer">
+        <p>Vincent BERHOUET (développeur indépendant solo). Joignable par email <a href="mailto:contact@perflog.app">contact@perflog.app</a>.</p>
+        <p>Le développement suit une cadence sprints, avec une priorité absolue à la qualité, la sécurité, et le respect du contrat privacy. Pas de roadmap publique pour l'instant — les évolutions répondent aux retours des bêta-testeurs.</p>
+      </div>
+    </details>
+
+    <footer>
+      <p>Une question manquante ? <a href="mailto:contact@perflog.app">contact@perflog.app</a></p>
+      <p style="margin-top: 12px;">© 2026 Vincent BERHOUET — Projet personnel non commercial.</p>
+    </footer>
+  </div>
+</body>
+</html>
