@@ -1,0 +1,483 @@
+<!--
+  PerfLog — Manifesto page (DRAFT 2026-05-23)
+
+  À copier dans le repo perflog-legal sous /manifesto.html, puis
+  ajouter un lien depuis le footer de index.html.
+
+  Conventions :
+  - Aucun JS, aucun CSS externe (cohérence brand "pas de tracking")
+  - Aucune Google Font (les Google Fonts leak l'IP des visiteurs)
+  - Aucun pixel publicitaire / analytics
+  - Système de couleurs aligné avec la DA app (noir profond + rouge)
+  - Sémantique HTML5 (<article>, <section>, <header>) pour SEO
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifesto — PerfLog</title>
+<meta name="description" content="PerfLog refuse toute télémétrie tierce. Pas de Firebase, pas de Sentry, pas de Mixpanel. Voilà ce qu'on refuse, ce qu'on promet, et comment tu peux vérifier qu'on tient parole.">
+<meta name="theme-color" content="#0A0A0A">
+
+<!-- Open Graph (pour partage social) -->
+<meta property="og:title" content="Manifesto — PerfLog">
+<meta property="og:description" content="L'app de musculation qui refuse tout tracking tiers — vérifiable dans le code source.">
+<meta property="og:image" content="https://perflog.app/og-image.png">
+<meta property="og:url" content="https://perflog.app/manifesto">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* ─── Reset + base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  /* -apple-system charge la SF Pro sur iOS/macOS sans request external.
+     Stack fallback robuste pour Linux/Windows. */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+body {
+  background: #0A0A0A;       /* fond app PerfLog */
+  color: #F5F5F7;            /* texte primaire */
+  min-height: 100vh;
+}
+
+/* ─── Layout container ─────────────────────────────────────────── */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+/* ─── Header ──────────────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+header .brand {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #A0A0A8;
+  margin-bottom: 24px;
+}
+
+header .brand a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+header .brand a:hover {
+  border-bottom-color: #C1121F;
+}
+
+header h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+header .subtitle {
+  font-size: 18px;
+  color: #A0A0A8;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+header .accent {
+  color: #C1121F;
+}
+
+/* ─── Sections ────────────────────────────────────────────────── */
+section {
+  margin-bottom: 56px;
+}
+
+section h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+section h2 .num {
+  color: #C1121F;
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+section p {
+  margin-bottom: 16px;
+  color: #D8D8DC;
+}
+
+section p.lead {
+  font-size: 19px;
+  color: #F5F5F7;
+}
+
+section ul {
+  list-style: none;
+  margin: 16px 0;
+}
+
+section ul li {
+  padding: 12px 0 12px 28px;
+  position: relative;
+  color: #D8D8DC;
+  border-bottom: 1px solid #2A2A30;
+}
+
+section ul li:last-child { border-bottom: none; }
+
+section ul li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: #C1121F;
+  font-weight: 700;
+}
+
+section ul.promises li::before {
+  content: "✓";
+  color: #4ADE80;
+}
+
+/* ─── Code block (pour les bouts de preuve technique) ─────────── */
+code, .code-link {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  background: #16161A;
+  border: 1px solid #2A2A30;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #F5F5F7;
+}
+
+.code-link {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 4px 0;
+  color: #F5F5F7;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.code-link:hover {
+  border-color: #C1121F;
+  background: #1F1F25;
+}
+
+/* ─── Quote / pull-out ─────────────────────────────────────────── */
+.pullout {
+  background: #16161A;
+  border-left: 3px solid #C1121F;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #F5F5F7;
+}
+
+/* ─── CTA / pricing card ──────────────────────────────────────── */
+.pricing {
+  background: linear-gradient(180deg, #16161A 0%, #1F1F25 100%);
+  border: 1px solid #2A2A30;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 32px 0;
+}
+
+.pricing h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.pricing .tiers {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.pricing .tier {
+  flex: 1;
+  min-width: 180px;
+  background: #0A0A0A;
+  border: 1px solid #2A2A30;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.pricing .tier .price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #C1121F;
+  margin: 8px 0;
+}
+
+.pricing .tier .label {
+  font-size: 14px;
+  color: #A0A0A8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pricing .tier .note {
+  font-size: 13px;
+  color: #A0A0A8;
+  margin-top: 8px;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+footer {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid #2A2A30;
+  text-align: center;
+  color: #5C5C66;
+  font-size: 14px;
+}
+
+footer a {
+  color: #A0A0A8;
+  text-decoration: none;
+  margin: 0 12px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+footer a:hover {
+  border-bottom-color: #C1121F;
+  color: #F5F5F7;
+}
+
+/* ─── Mobile tweaks ───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .container { padding: 32px 20px 64px; }
+  header h1 { font-size: 36px; }
+  section h2 { font-size: 24px; }
+  .pricing { padding: 24px 20px; }
+  .pricing .tiers { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="brand"><a href="/">← PerfLog</a></div>
+    <h1>Notre <span class="accent">manifesto</span> privacy</h1>
+    <p class="subtitle">
+      Pourquoi PerfLog existe, ce qu'on refuse de faire, et comment
+      tu peux vérifier qu'on tient parole.
+    </p>
+  </header>
+
+  <article>
+
+    <!-- ─── Section 1 : Pourquoi ────────────────────────────────── -->
+    <section>
+      <h2><span class="num">01</span> Pourquoi PerfLog existe</h2>
+      <p class="lead">
+        Les apps de musculation mainstream embarquent toutes Firebase,
+        Mixpanel, Crashlytics, Amplitude. Chaque tap dans l'app,
+        chaque temps passé sur un écran, chaque caractéristique de
+        ton appareil est envoyé à un serveur tiers — souvent aux
+        États-Unis.
+      </p>
+      <p>
+        Pour quoi faire ? Du marketing ciblé. De la revente de
+        données comportementales agrégées. De l'A/B testing optimisé
+        pour maximiser tes sessions plutôt que ta progression.
+      </p>
+      <p>
+        Toi, tu pensais juste tracker tes séances de muscu.
+      </p>
+      <div class="pullout">
+        PerfLog refuse tout ça. Pas par idéologie tiède — par vérité
+        technique vérifiable.
+      </div>
+    </section>
+
+    <!-- ─── Section 2 : Ce qu'on refuse ─────────────────────────── -->
+    <section>
+      <h2><span class="num">02</span> Ce qu'on refuse de faire</h2>
+      <p>
+        Pas de "et on collecte juste un peu pour améliorer le
+        produit". Pas d'opt-in vague. Aucune télémétrie tierce dans
+        l'app, point.
+      </p>
+      <ul>
+        <li>Aucun SDK d'analytics (Firebase Analytics, Mixpanel,
+          Amplitude, PostHog, ...)</li>
+        <li>Aucun pixel publicitaire (Meta Pixel, TikTok Pixel,
+          Google Ads, ...)</li>
+        <li>Aucun crash reporting tiers (Sentry, Crashlytics, Bugsnag)
+          — les bugs nous arrivent par contact direct, jamais par
+          remontée auto silencieuse</li>
+        <li>Aucun identifiant publicitaire stable (IDFA, AAID)</li>
+        <li>Aucun "attribution SDK" (AppsFlyer, Adjust, Branch, ...)</li>
+        <li>Aucune Google Font, aucun CDN externe (qui leak ton IP
+          au chargement) — même sur cette page</li>
+      </ul>
+    </section>
+
+    <!-- ─── Section 3 : Comment vérifier ────────────────────────── -->
+    <section>
+      <h2><span class="num">03</span> Comment tu peux vérifier</h2>
+      <p>
+        Une promesse privacy qu'on ne peut pas vérifier vaut zéro.
+        Voilà nos preuves auditables :
+      </p>
+      <p>
+        <strong>Le lockfile de dépendances est public sur GitHub.</strong>
+        Tu peux scanner toi-même chaque package qu'on embarque :
+      </p>
+      <p>
+        <a class="code-link" href="https://github.com/Beroyy/PerfLog/blob/main/pubspec.lock" target="_blank" rel="noopener">
+          github.com/Beroyy/PerfLog/blob/main/pubspec.lock
+        </a>
+      </p>
+      <p>
+        <strong>La CI bloque automatiquement les SDKs interdits.</strong>
+        On a un script <code>check_no_tracking.dart</code> qui
+        échoue le build si Firebase, Sentry, Mixpanel ou autre est
+        ajouté par erreur. Le build CI doit passer ce gate avant
+        d'être publié sur l'App Store :
+      </p>
+      <p>
+        <a class="code-link" href="https://github.com/Beroyy/PerfLog/blob/main/tool/check_no_tracking.dart" target="_blank" rel="noopener">
+          github.com/Beroyy/PerfLog/blob/main/tool/check_no_tracking.dart
+        </a>
+      </p>
+      <p>
+        <strong>L'ADR-003 documente la décision.</strong> Un
+        Architecture Decision Record qui explique pourquoi on a
+        refusé Sentry et compagnie, même opt-in :
+      </p>
+      <p>
+        <a class="code-link" href="https://github.com/Beroyy/PerfLog/blob/main/docs/dev/adr-003-no-analytics-manifesto.md" target="_blank" rel="noopener">
+          github.com/Beroyy/PerfLog/blob/main/docs/dev/adr-003-no-analytics-manifesto.md
+        </a>
+      </p>
+    </section>
+
+    <!-- ─── Section 4 : Ce qu'on promet ─────────────────────────── -->
+    <section>
+      <h2><span class="num">04</span> Ce qu'on promet</h2>
+      <p>
+        Voilà nos engagements concrets, en remplacement de la
+        télémétrie qu'on n'aura jamais :
+      </p>
+      <ul class="promises">
+        <li><strong>Tes données restent sur ton téléphone par
+          défaut.</strong> PerfLog fonctionne 100% en local. Le mode
+          cloud est optionnel et opt-in explicite.</li>
+        <li><strong>Si tu actives la sauvegarde Cloud, tout est
+          chiffré sur ton appareil AVANT l'upload (E2E).</strong> Le
+          serveur ne voit qu'un blob illisible. Pas même nous ne
+          pouvons lire ton journal.</li>
+        <li><strong>Pas de pubs, jamais.</strong> Aucune bannière,
+          aucune vidéo, aucun "interstitiel".</li>
+        <li><strong>Pas de dark patterns.</strong> Pas de "trial 7
+          jours" piégeux. Pas de "es-tu vraiment sûr de vouloir
+          supprimer ?" + bouton rouge minuscule. Pas de FOMO.</li>
+        <li><strong>Si tu pars demain, tu emportes tes données.</strong>
+          Export JSON complet en un tap, lisible n'importe où.</li>
+      </ul>
+    </section>
+
+    <!-- ─── Section 5 : Pricing ─────────────────────────────────── -->
+    <section>
+      <h2><span class="num">05</span> Le modèle économique</h2>
+      <p>
+        Pas de publicité, pas de revente de données. Comment on vit
+        alors ? Avec un abonnement honnête, payé par les utilisateurs
+        qui valorisent ce qu'on construit.
+      </p>
+
+      <div class="pricing">
+        <h3>PerfLog+ <span class="accent" style="color:#C1121F;">(à venir)</span></h3>
+        <p>Les fonctions premium qui financent le développement continu.
+        Le tracking de base reste gratuit, à vie.</p>
+
+        <div class="tiers">
+          <div class="tier">
+            <div class="label">Mensuel</div>
+            <div class="price">€4.99<small style="font-size:14px;color:#A0A0A8;">/mois</small></div>
+            <div class="note">Sans engagement. Résiliable à tout moment depuis l'App Store ou Play Store.</div>
+          </div>
+          <div class="tier">
+            <div class="label">Annuel</div>
+            <div class="price">€49.99<small style="font-size:14px;color:#A0A0A8;">/an</small></div>
+            <div class="note">≈ €4.16/mois. Économie de ~17%.</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 24px; font-size: 14px; color: #A0A0A8;">
+          <strong>Pas de tier lifetime / one-shot.</strong> Un revenu
+          récurrent finance les améliorations continues. Un
+          lifetime serait un cash-grab incohérent avec un développement
+          actif sur plusieurs années.
+        </p>
+      </div>
+
+      <p>
+        Tu n'es pas obligé·e de payer pour utiliser PerfLog. Le free
+        tier reste utilisable indéfiniment — tracking, programmes,
+        analyses, export. PerfLog+ débloque les features pour les
+        utilisateurs sérieux qui veulent supporter le projet.
+      </p>
+    </section>
+
+    <!-- ─── Section 6 : Une dernière chose ────────────────────────── -->
+    <section>
+      <h2><span class="num">06</span> Une dernière chose</h2>
+      <p>
+        Ce manifesto n'est pas du marketing. C'est une déclaration
+        engageante : si jamais on ajoutait Sentry, Firebase ou un
+        autre SDK de tracking dans une future version, tu aurais
+        légitimement le droit de nous rappeler cette page et de
+        partir, données en main, sans regret.
+      </p>
+      <p>
+        On ne le fera pas. Mais le contrat social est posé.
+      </p>
+    </section>
+
+  </article>
+
+  <footer>
+    <a href="/">Accueil</a> ·
+    <a href="/privacy">Politique de confidentialité</a> ·
+    <a href="/terms">CGU</a> ·
+    <a href="https://github.com/Beroyy/PerfLog" target="_blank" rel="noopener">Code source</a>
+    <p style="margin-top: 24px;">
+      PerfLog est édité par Vincent Berhouet, France.<br>
+      Construit en Flutter · Hébergé en Europe · Sans télémétrie.
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
