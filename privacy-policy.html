@@ -112,7 +112,7 @@
 
     <h2>1. Local d'abord, cloud optionnel</h2>
     <p><strong>Par défaut</strong>, toutes tes données — programmes, séances, sets, annotations, mensurations corporelles, records personnels, préférences — sont stockées <strong>uniquement</strong> sur ton appareil, dans le sandbox isolé de l'application (inaccessible aux autres apps). Le chiffrement au repos est assuré par le système d'exploitation : <strong>Data Protection AES-256</strong> sur iOS (clé liée au code de déverrouillage, dé-chiffrement géré par le Secure Enclave) et <strong>File-Based Encryption (FBE)</strong> sur Android 7+. Aucune donnée ne quitte ton appareil sans action explicite de ta part.</p>
-    <p><strong>Optionnellement</strong> (V3+), tu peux activer la <strong>Sauvegarde Cloud</strong> dans Paramètres → Cloud pour synchroniser tes données entre plusieurs appareils ou les protéger contre la perte de téléphone. Cette fonctionnalité est <strong>désactivée par défaut</strong> et nécessite ton opt-in explicite.</p>
+    <p><strong>Optionnellement</strong>, tu peux activer la <strong>Sauvegarde Cloud</strong> dans Paramètres → Cloud pour synchroniser tes données entre plusieurs appareils ou les protéger contre la perte de téléphone. Cette fonctionnalité est <strong>désactivée par défaut</strong> et nécessite ton opt-in explicite. Une fois activée, la sauvegarde s'effectue <strong>automatiquement et silencieusement</strong> (à la fin de chaque séance terminée et lorsque l'application passe en arrière-plan) ; aucune notification ni action ne t'est demandée pendant l'usage, et tu peux la désactiver à tout moment.</p>
     <p>Lorsque tu actives la Sauvegarde Cloud :</p>
     <ul>
       <li>Tes données sont <strong>chiffrées de bout en bout (E2E)</strong> côté téléphone <strong>avant</strong> tout envoi</li>
@@ -123,7 +123,7 @@
 
     <h2>2. Aucun traceur, aucune analyse comportementale</h2>
     <p>PerfLog n'embarque aucun outil de tracking ou d'analyse comportementale : pas de Firebase, pas de Crashlytics, pas de Sentry, pas de Mixpanel, pas d'Amplitude, pas de Google Analytics, pas de Meta Pixel. Cette absence est vérifiée par un gate CI dédié qui inspecte les dépendances et le code source à chaque commit.</p>
-    <p>Cette règle s'applique également au module Cloud V3 : aucune télémétrie, aucun reporting de crash distant, aucun fingerprint.</p>
+    <p>Cette règle s'applique également au module Cloud : aucune télémétrie, aucun reporting de crash distant, aucun fingerprint.</p>
 
     <h2>3. Aucune géolocalisation, aucune permission sensible</h2>
     <p>L'application ne demande pas, ne capture pas et ne stocke pas de données de localisation. Aucune permission de géolocalisation, caméra, micro, photos, contacts, ou identifiant publicitaire (IDFA / Advertising ID) n'est jamais sollicitée.</p>
@@ -138,7 +138,7 @@
 
     <h2>5. Aucun identifiant tiers, aucun compte requis pour le local</h2>
     <p>L'usage local de PerfLog ne nécessite <strong>aucun compte, aucun login</strong>. Pas d'IDFA (iOS), pas d'Advertising ID (Android), pas de connexion via Google / Apple / Facebook.</p>
-    <p><strong>Si et seulement si</strong> tu actives la Sauvegarde Cloud V3, tu créeras un compte basé sur ton <strong>adresse email</strong> (authentification par lien magique ou code à 6 chiffres — pas de mot de passe à mémoriser). Cette email reste l'unique donnée d'identification, conservée par notre hébergeur Supabase pour gérer l'authentification.</p>
+    <p><strong>Si et seulement si</strong> tu actives la Sauvegarde Cloud, tu créeras un compte basé sur ton <strong>adresse email</strong> (authentification par lien magique ou code à 6 chiffres — pas de mot de passe à mémoriser). Cette email reste l'unique donnée d'identification, conservée par notre hébergeur Supabase pour gérer l'authentification.</p>
 
     <h2>6. Bases légales du traitement (Art. 6 et Art. 9 RGPD)</h2>
     <p>Chaque traitement de données par PerfLog repose sur une base légale précise :</p>
@@ -184,7 +184,7 @@
     <p>Lorsque tu installes PerfLog via Apple TestFlight, l'App Store ou Google Play, Apple et Google agissent comme responsables de traitement indépendants pour les données qu'ils collectent de leur côté (rapports de crash anonymisés, télémétrie de bêta-test). Ces traitements sont régis par leurs politiques respectives et ne sont pas sous notre contrôle.</p>
 
     <h3>Pour la Sauvegarde Cloud (si activée, opt-in)</h3>
-    <p>Si tu actives la Sauvegarde Cloud V3, nous utilisons les sous-traitants suivants pour stocker ton blob chiffré :</p>
+    <p>Si tu actives la Sauvegarde Cloud, nous utilisons les sous-traitants suivants pour stocker ton blob chiffré :</p>
     <table>
       <thead>
         <tr><th>Sous-traitant</th><th>Rôle</th><th>Région</th></tr>
@@ -249,9 +249,10 @@
     <p>La date de dernière révision est affichée ci-dessous et accessible dans l'app via Profil → Confidentialité.</p>
 
     <footer>
-      <p><strong>Date de dernière mise à jour : 17 mai 2026</strong></p>
+      <p><strong>Date de dernière mise à jour : 6 juin 2026</strong></p>
       <p>Versions précédentes :</p>
       <ul>
+        <li>6 juin 2026 — Clarification : la Sauvegarde Cloud est désormais disponible et automatique (sync chiffrée silencieuse à la fin de chaque séance et au passage en arrière-plan, après opt-in). Libellés « Cloud V3 » → « Cloud ». Aucun nouveau sous-traitant ni changement de finalité.</li>
         <li>17 mai 2026 — Renforcement RGPD : ajout §0 (identité responsable du traitement Vincent BERHOUET), §6 (bases légales Art. 6 + Art. 9 par traitement), §8 (mineurs Art. 8 RGPD + LIL Art. 45), §9 — Schrems II / DPF / CCT</li>
         <li>13 mai 2026 — Publication initiale des pages légales publiques</li>
         <li>12 mai 2026 — Activation des crons de purge automatique (suppression effective à T+30j ; rétention 24 mois d'inactivité)</li>
