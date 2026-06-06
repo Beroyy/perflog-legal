@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppression de compte et de données — PerfLog</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #1a1d24;
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+      --accent: #ff4d4d;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 24px 64px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p { margin-bottom: 16px; color: var(--text); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; color: var(--text); }
+    code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--text-muted);
+    }
+    a { color: var(--accent); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--surface);
+      font-weight: 600;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Retour</a>
+    <h1>Suppression de compte et de données</h1>
+    <p class="intro">PerfLog respecte ton droit à l'effacement (RGPD Art. 17). Voici comment supprimer ton compte cloud et/ou tes données, ce qui est supprimé, et ce qui est conservé.</p>
+
+    <h2>1. Supprimer ton compte cloud (si la Sauvegarde Cloud est activée)</h2>
+    <p>Depuis l'application : <strong>Profil → Cloud → « Supprimer mon compte »</strong>.</p>
+    <ul>
+      <li>Suppression différée de <strong>30 jours</strong> (période de grâce annulable si tu changes d'avis).</li>
+      <li>Au terme des 30 jours : purge définitive de ton <strong>blob chiffré</strong>, de ton <strong>adresse email</strong> et de ton <strong>historique d'authentification</strong>.</li>
+      <li>Un <strong>hash SHA-256</strong> est conservé 30 jours à des fins de traçabilité légale (RGPD Art. 30), puis purgé.</li>
+    </ul>
+
+    <h2>2. Supprimer tes données locales</h2>
+    <p>Depuis l'application : <strong>Profil → « Effacer toutes mes données »</strong>.</p>
+    <ul>
+      <li>Effacement <strong>immédiat et irréversible</strong> de la base de données locale (sur ton appareil).</li>
+      <li>Désinstaller l'application supprime également toutes les données locales.</li>
+    </ul>
+
+    <h2>3. Ce qui est supprimé / conservé</h2>
+    <table>
+      <thead><tr><th>Donnée</th><th>Suppression</th><th>Conservation</th></tr></thead>
+      <tbody>
+        <tr><td>Séances, programmes, mesures, records (local)</td><td>Immédiate</td><td>Aucune</td></tr>
+        <tr><td>Blob chiffré cloud</td><td>Après 30 jours (soft-delete)</td><td>Aucune au-delà</td></tr>
+        <tr><td>Email de compte cloud</td><td>Après 30 jours</td><td>Aucune au-delà</td></tr>
+        <tr><td>Hash d'audit SHA-256</td><td>Après 30 jours</td><td>30 jours (Art. 30 RGPD)</td></tr>
+      </tbody>
+    </table>
+    <p>Note : un compte cloud inactif pendant <strong>24 mois</strong> est automatiquement supprimé (3 emails de préavis à 60, 30 et 7 jours).</p>
+
+    <h2>4. Besoin d'aide ?</h2>
+    <p>Si tu ne peux plus accéder à l'application, écris à <a href="mailto:contact@perflog.app">contact@perflog.app</a> : nous traitons ta demande sous 1 mois maximum (RGPD Art. 12.3).</p>
+    <p>Détails complets : <a href="privacy-policy.html">Politique de confidentialité</a> (§7 et §10) et <a href="terms.html">Conditions d'utilisation</a> (§7).</p>
+
+    <footer>
+      <p><strong>Dernière mise à jour : 6 juin 2026</strong></p>
+      <p>PerfLog — Vincent BERHOUET — contact@perflog.app</p>
+    </footer>
+  </div>
+</body>
+</html>
