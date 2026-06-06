@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — PerfLog</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #1a1d24;
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+      --accent: #ff4d4d;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 24px 64px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p { margin-bottom: 16px; color: var(--text); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; color: var(--text); }
+    code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--text-muted);
+    }
+    a { color: var(--accent); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--surface);
+      font-weight: 600;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Back</a>
+    <a class="back" href="privacy-policy.html" style="margin-left: 16px;">Français</a>
+    <h1>Privacy Policy</h1>
+    <p class="intro">PerfLog is a strength-training app built around a simple requirement: <strong>your data belongs to you</strong>. This policy explains what that means in practice, and lists your rights under the GDPR.</p>
+
+    <h2>0. Data controller</h2>
+    <p>In accordance with <strong>Article 13.1.a</strong> of the GDPR, the controller of the data processed by PerfLog is:</p>
+    <p><strong>Vincent BERHOUET</strong><br>
+    Natural person — personal, non-commercial project<br>
+    Email: <a href="mailto:contact@perflog.app">contact@perflog.app</a></p>
+    <p>Vincent BERHOUET also acts as the <strong>data protection point of contact</strong> (functional DPO equivalent for personal processing — Art. 37 is not mandatory here but is formalised to make your GDPR requests easier).</p>
+
+    <h2>1. Local first, cloud optional</h2>
+    <p><strong>By default</strong>, all your data — programs, sessions, sets, annotations, per-exercise personal notes, body measurements, personal records, the optional information entered for the calorie-estimation calculator (year of birth, height, biological sex, activity level), regularity badges and first-launch date, preferences — is stored <strong>only</strong> on your device, inside the app's isolated sandbox (inaccessible to other apps). Encryption at rest is provided by the operating system: <strong>Data Protection AES-256</strong> on iOS (key tied to the device passcode, decryption handled by the Secure Enclave) and <strong>File-Based Encryption (FBE)</strong> on Android 7+. No data leaves your device without an explicit action on your part.</p>
+    <p><strong>Optionally</strong>, you can enable <strong>Cloud Backup</strong> in Settings → Cloud to sync your data across several devices or to protect it against phone loss. This feature is <strong>disabled by default</strong> and requires your explicit opt-in. Once enabled, the backup runs <strong>automatically and silently</strong> (at the end of each completed session and when the app moves to the background); no notification or action is requested during use, and you can disable it at any time.</p>
+    <p>When you enable Cloud Backup:</p>
+    <ul>
+      <li>Your data is <strong>end-to-end encrypted (E2E)</strong> on the phone <strong>before</strong> any upload</li>
+      <li>Our host (Supabase) only ever sees an opaque, undecryptable blob, plus a few technical metadata (size, timestamp, hash)</li>
+      <li>The decryption key is derived from an <strong>optional passphrase</strong> or a <strong>mandatory recovery code</strong> that you alone hold</li>
+      <li>We <strong>can never read your data</strong> — even if we wanted to</li>
+    </ul>
+
+    <h2>2. No tracker, no behavioural analytics</h2>
+    <p>PerfLog embeds no tracking or behavioural-analytics tool: no Firebase, no Crashlytics, no Sentry, no Mixpanel, no Amplitude, no Google Analytics, no Meta Pixel. This absence is verified by a dedicated CI gate (FR49) that inspects dependencies and source code on every commit. The full audit report is in the public repo: <code>docs/privacy/no-tracking-audit.md</code>.</p>
+    <p>This rule also applies to the Cloud module: no telemetry, no remote crash reporting, no fingerprinting.</p>
+
+    <h2>3. No geolocation, no sensitive permission</h2>
+    <p>The app does not request, capture or store any location data. No geolocation, camera, microphone, photos, contacts, or advertising-identifier (IDFA / Advertising ID) permission is ever requested.</p>
+
+    <h2>4. Health data (GDPR Art. 9 special category)</h2>
+    <p>Your body measurements (weight, arm, thigh and chest circumference), your <strong>per-exercise personal notes</strong> (a free-text field where you can jot a reminder such as "increase the weight next time" or "watch the lower back"), as well as the <strong>optional information</strong> entered for the <strong>calorie-estimation calculator</strong> (year of birth, height, biological sex, activity level) may qualify as health data under Article 9 of the GDPR. PerfLog processes it:</p>
+    <ul>
+      <li><strong>On your device exclusively</strong> by default (the "purely personal or household activity" exemption, Art. 2.2.c)</li>
+      <li><strong>End-to-end encrypted</strong> if you enable Cloud Backup: neither Supabase nor we can read it</li>
+    </ul>
+    <p>The processing remains compliant with Art. 9 GDPR because (a) it is limited to your personal use, (b) E2E encryption guarantees the data never leaves your sphere of control in a readable form, and (c) the <strong>data-minimisation</strong> principle (Art. 5.1.c) is strictly applied: for example, the calorie calculator asks for the <strong>year</strong> of birth (4 digits), not the full date.</p>
+    <p><strong>Important note on the calorie calculator</strong>: it provides an <strong>indicative estimate</strong> (the scientific Mifflin-St Jeor formula, 1990) of your daily energy expenditure. This information does <strong>not</strong> constitute nutritional advice or a medical act. No calorie-intake prescription (weight loss/gain) is ever made. The raw result is left to your own interpretation and does not replace professional advice.</p>
+    <p><strong>Important note on per-exercise personal notes</strong>: this free-text field is <strong>strictly local</strong> by default and E2E-encrypted if Cloud Backup is enabled. Avoid recording sensitive medical information (diagnoses, prescriptions) that you would not want associated with your device. Content is capped at 2,000 characters per exercise.</p>
+
+    <h2>5. No third-party identifier, no account required for local use</h2>
+    <p>Local use of PerfLog requires <strong>no account, no login</strong>. No IDFA (iOS), no Advertising ID (Android), no sign-in via Google / Apple / Facebook.</p>
+    <p><strong>If and only if</strong> you enable Cloud Backup, you will create an account based on your <strong>email address</strong> (authentication via magic link or 6-digit code — no password to remember). This email is the sole identifying datum, retained by our host Supabase to manage authentication.</p>
+
+    <h2>6. Legal bases for processing (GDPR Art. 6 and Art. 9)</h2>
+    <p>Each processing of data by PerfLog rests on a specific legal basis:</p>
+    <table>
+      <thead>
+        <tr><th>Processing</th><th>Legal basis</th><th>Reference</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Local storage (sessions, measurements, programs)</td><td><strong>Household exemption</strong> — strictly personal use</td><td>Art. 2.2.c</td></tr>
+        <tr><td>Enabling Cloud Backup</td><td><strong>Explicit consent</strong> via dedicated opt-in</td><td>Art. 6.1.a + Art. 9.2.a (health)</td></tr>
+        <tr><td>Email authentication for the Cloud</td><td><strong>Performance of a pre-contractual measure</strong> (creating the cloud account at your request)</td><td>Art. 6.1.b</td></tr>
+        <tr><td>Retaining the encrypted blob while you use the app</td><td><strong>Performance of the Cloud service contract</strong></td><td>Art. 6.1.b</td></tr>
+        <tr><td>Automatic deletion after 24 months of inactivity</td><td><strong>Legal storage-limitation obligation</strong></td><td>Art. 5.1.e</td></tr>
+        <tr><td>Breach-notification procedure</td><td><strong>Legal obligation</strong></td><td>Art. 33</td></tr>
+      </tbody>
+    </table>
+    <p>You can withdraw your consent to Cloud Backup at any time from Cloud → "Disable cloud backup" — withdrawal is immediate and purges the server-side data without affecting your local device.</p>
+
+    <h2>7. Your rights under the GDPR</h2>
+    <p>In accordance with the General Data Protection Regulation (EU 2016/679), you have the following rights. For <strong>local</strong> data, they are exercisable directly from the app. For <strong>cloud</strong> data (if enabled), they are also exercisable from the app, without needing to contact us:</p>
+    <ul>
+      <li><strong>Right of access (Art. 15)</strong> — your data is visible from every screen. You can export all of it as JSON via Profile → Export.</li>
+      <li><strong>Right to rectification (Art. 16)</strong> — validated sets, annotations, programs and measurements can be edited.</li>
+      <li><strong>Right to erasure / to be forgotten (Art. 17)</strong> — Profile → "Erase all my data": irreversible <strong>local</strong> deletion. If Cloud is enabled: Cloud → "Delete my account" also triggers cloud deletion after a <strong>30-day</strong> window (soft-delete) that lets you cancel if you change your mind.</li>
+      <li><strong>Right to portability (Art. 20)</strong> — Profile → "Export my data": a structured JSON file containing all of your data.</li>
+      <li><strong>Right to object (Art. 21)</strong> — the proactive coach can be disabled. Cloud Backup can be disabled at any time (Cloud → "Disable cloud backup"), which immediately purges the server-side data while leaving your local device intact.</li>
+      <li><strong>Right to restriction (Art. 18)</strong> — disabling Cloud Backup stops processing by our host without deleting your account (useful if you are unsure).</li>
+    </ul>
+    <p>No automated decision with legal effect (Art. 22) is made by the app: the coach's suggestions are indicative and non-binding.</p>
+
+    <h2>8. Minors (GDPR Art. 8 + French Data Protection Act Art. 45)</h2>
+    <p>PerfLog is intended for adult or supervised-teen use. In accordance with French law:</p>
+    <ul>
+      <li><strong>Under 15</strong>: use requires the prior consent of a holder of parental authority, in particular to enable Cloud Backup. Local-only mode remains usable under parental supervision.</li>
+      <li><strong>15 and over</strong>: you can use the app and enable the Cloud independently.</li>
+    </ul>
+    <p>If you detect that a minor under 15 is using PerfLog without parental authorisation via Cloud Backup, contact <a href="mailto:contact@perflog.app">contact@perflog.app</a> — we will delete the account without delay in accordance with Art. 17.</p>
+    <p>No marketing targeting, advertising tracker or behavioural profiling is applied, including where the user is a minor (see Section 2).</p>
+
+    <h2>9. Processors and third-party services</h2>
+    <h3>For local use (default)</h3>
+    <p>The app itself has <strong>no processor</strong> when you only use local mode.</p>
+    <p>When you install PerfLog via Apple TestFlight or the App Store, Apple acts as an independent controller for the data it collects on its side (anonymised crash reports, beta-test telemetry). This processing is governed by <a href="https://www.apple.com/legal/privacy/en/" target="_blank">Apple's policy</a> and is not under our control.</p>
+
+    <h3>For Cloud Backup (if enabled, opt-in)</h3>
+    <p>If you enable Cloud Backup, we use the following processors to store your encrypted blob:</p>
+    <table>
+      <thead>
+        <tr><th>Processor</th><th>Role</th><th>Region</th><th>DPA commitment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Supabase Inc.</strong></td><td>Auth hosting, encrypted Storage, database</td><td><code>eu-central-1</code> (Frankfurt, Germany)</td><td>DPA incorporated via their Terms of Service (<a href="https://supabase.com/legal/dpa" target="_blank">supabase.com/legal/dpa</a>)</td></tr>
+        <tr><td><strong>Amazon Web Services Inc.</strong></td><td>Supabase's underlying cloud infrastructure</td><td>EU Central (Frankfurt)</td><td>Supabase sub-processor, AWS DPA auto-incorporated</td></tr>
+        <tr><td><strong>Resend Inc.</strong></td><td>SMTP relay to send the authentication magic link (email only)</td><td><code>eu-west-1</code> (Ireland)</td><td>Standard Resend DPA</td></tr>
+        <tr><td><strong>GitHub Inc. (Microsoft)</strong></td><td>Hosting of the Universal Links / App Links verification file on <code>perflog.app</code></td><td>EU edge</td><td>Standard GitHub DPA</td></tr>
+      </tbody>
+    </table>
+    <p><strong>All application data</strong> (sessions, measurements, programs) is <strong>E2E-encrypted before</strong> being sent to Supabase. None of these processors can read your content. They only see:</p>
+    <ul>
+      <li>Your email address (Supabase Auth, Resend SMTP)</li>
+      <li>An opaque encrypted blob (Supabase Storage)</li>
+      <li>Technical metadata (timestamps, size, hashes)</li>
+    </ul>
+
+    <h3>Transfers outside the EU and the Schrems II ruling</h3>
+    <p>All <strong>application processing takes place within the European Union</strong> (Germany for Supabase + AWS, Ireland for Resend). However, some of these processors have a <strong>US parent company</strong> (Supabase Inc., Amazon Web Services Inc., Resend Inc.).</p>
+    <p>In accordance with the <strong>Schrems II ruling</strong> (CJEU, 16 July 2020) and the <strong>Data Privacy Framework</strong> (DPF, July 2023):</p>
+    <ul>
+      <li>All processing infrastructure is <strong>physically located in the EU</strong></li>
+      <li>Intra-group transfers to the US parent are covered by the European Commission's <strong>Standard Contractual Clauses (SCC)</strong> (Decision 2021/914)</li>
+      <li>E2E encryption makes application data <strong>inaccessible</strong> to the processor, including in the event of an access request by a third-party authority (FISA 702, Cloud Act). Only the email address and technical metadata are theoretically accessible</li>
+      <li>Supabase, AWS and Resend are DPF-certified (US-EU Data Privacy Framework)</li>
+    </ul>
+    <p>The detailed processing register and the applicable SCCs are available on request (<a href="mailto:contact@perflog.app">contact@perflog.app</a>).</p>
+
+    <h2>10. Data retention</h2>
+    <h3>Local</h3>
+    <p>Your local data stays on your device for as long as you wish. Uninstalling PerfLog also deletes the local database.</p>
+
+    <h3>Cloud (if enabled)</h3>
+    <p>Your encrypted data is retained on Supabase for as long as you use the app. If you perform no sync for <strong>24 consecutive months</strong>, your cloud account is automatically deleted (storage limitation, Art. 5(1)(e) GDPR). You receive 3 notification emails 60, 30 and 7 days before deletion. You can also manually enable the <strong>"Extended retention"</strong> option in Cloud → Settings, with a re-confirmation every 24 months.</p>
+    <p>Explicit account deletion: 30-day soft-delete (cancellable) then full purge including your blob, your email and the authentication history.</p>
+
+    <h2>11. Security</h2>
+    <p>PerfLog applies reinforced technical and organisational measures:</p>
+    <ul>
+      <li><strong>Local confidentiality</strong>: app sandbox + OS encryption at rest (Data Protection AES-256 on iOS / File-Based Encryption on Android)</li>
+      <li><strong>E2E cloud encryption</strong>: AES-256-GCM with Argon2id (RFC 9106) or HKDF-SHA256 (RFC 5869) derivation. Full spec: <code>_bmad-output/planning-artifacts/architecture.md</code></li>
+      <li><strong>Certificate pinning</strong>: double pin (Supabase leaf cert + Let's Encrypt backup root) to prevent MitM attacks</li>
+      <li><strong>Documented threat model</strong>: <code>docs/security/threat-model.md</code></li>
+      <li><strong>Breach notification (Art. 33)</strong>: 72-hour CNIL procedure formalised in <code>docs/legal/breach-response.md</code></li>
+    </ul>
+    <p><strong>Accepted limitation</strong>: PerfLog assumes a non-compromised device (non-jailbroken iOS, non-rooted Android). If your device is compromised at root level, confidentiality cannot be guaranteed (limitation L-MEM-1 of the threat model).</p>
+
+    <h2>12. Contact and complaints</h2>
+    <p>For any question about this policy, contact the data controller:</p>
+    <ul>
+      <li><strong>Vincent BERHOUET</strong> (data controller and data-protection point of contact)</li>
+      <li><strong>Email</strong>: <a href="mailto:contact@perflog.app">contact@perflog.app</a></li>
+      <li><strong>Response time</strong>: 1 month maximum (Art. 12(3) GDPR)</li>
+    </ul>
+    <p>You also have the right to lodge a complaint with the <strong>CNIL</strong> (the French data-protection authority) if you believe the processing of your data infringes the GDPR:</p>
+    <ul>
+      <li><a href="https://www.cnil.fr/en/plaintes" target="_blank">https://www.cnil.fr/en/plaintes</a></li>
+    </ul>
+
+    <h3>Additional documents</h3>
+    <ul>
+      <li><strong>Terms of Use</strong>: rules for using the app (<a href="terms-en.html">terms-en.html</a>, accessible from Profile → Legal notices)</li>
+      <li><strong>Detailed retention policy</strong>: <code>docs/legal/retention-policy.md</code></li>
+      <li><strong>Security threat model</strong>: <code>docs/security/threat-model.md</code></li>
+      <li><strong>Breach-notification procedure</strong>: <code>docs/legal/breach-response.md</code></li>
+    </ul>
+
+    <h2>13. Updates to this policy</h2>
+    <p>This policy may evolve if the app changes. Any major change (in particular the addition of a processor or a change of purpose) will be flagged on the app's next launch and will require your renewed consent if you use Cloud Backup.</p>
+    <p>The last-revision date is shown below and accessible in the app via Profile → Privacy.</p>
+
+    <hr>
+
+    <footer>
+      <p><strong>Last updated: 6 June 2026.</strong></p>
+      <p>This English text is a faithful translation of the authoritative French version. PerfLog is an EU-based service; processing is governed by the GDPR regardless of the interface language. In case of any discrepancy, the <a href="privacy-policy.html">French version</a> prevails.</p>
+      <p>Versions:</p>
+      <ul>
+        <li>6 June 2026 — Clarification: Cloud Backup is now <strong>available and automatic</strong> (once enabled by explicit opt-in, the encrypted backup runs silently at the end of each session and when the app moves to the background). "Cloud V3" labels replaced by "Cloud" (current feature). No new processor or change of purpose → consent already given remains valid, no re-consent required.</li>
+        <li>17 May 2026 — GDPR hardening: added §0 (controller identity Vincent BERHOUET), §6 (legal bases Art. 6 + Art. 9 per processing), §8 (minors Art. 8 GDPR + French DPA Art. 45), §9.5 (transfers outside the EU / Schrems II / DPF / SCC), cross-references to Terms + internal docs (§12)</li>
+        <li>11 May 2026 — Added the Cloud Backup module (opt-in, E2E, Supabase EU)</li>
+        <li>10 May 2026 — V2 version (local-only)</li>
+      </ul>
+      <p><strong>Source of truth</strong>: the <a href="privacy-policy.html">French version</a> committed in the PerfLog repo (<code>assets/legal/privacy-policy-fr.md</code>) prevails. Previous versions are kept via git history.</p>
+    </footer>
+  </div>
+</body>
+</html>
