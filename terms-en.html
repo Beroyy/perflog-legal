@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — PerfLog</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #1a1d24;
+      --text: #e8eaed;
+      --text-muted: #9aa0a6;
+      --accent: #ff4d4d;
+      --border: #2a2e36;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 24px 64px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .intro {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p { margin-bottom: 16px; color: var(--text); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    strong { font-weight: 600; color: var(--text); }
+    a { color: var(--accent); }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← Back</a>
+    <a class="back" href="terms.html" style="margin-left: 16px;">Français</a>
+    <h1>Terms of Use</h1>
+    <p class="intro">Welcome to PerfLog ("the app", "the service"). These Terms of Use ("Terms") govern your use of the PerfLog mobile application developed by <strong>Vincent BERHOUET</strong> ("we", "our", "us"). By downloading, installing or using the app, you agree to be bound by these Terms. If you do not accept these Terms, do not use the app.</p>
+    <p class="intro">This English text is a translation provided for convenience; the service is governed by French law and the <a href="terms.html">French version</a> prevails in case of any discrepancy.</p>
+
+    <h2>1. Service description</h2>
+    <p>PerfLog is a mobile strength-training tracking app that lets the user:</p>
+    <ul>
+      <li>Browse a curated exercise catalogue (≈ 400 exercises)</li>
+      <li>Create custom training programs</li>
+      <li>Log sessions, sets, reps and loads</li>
+      <li>Track progress through statistics (PRs, tonnage, frequency)</li>
+      <li>Back up data to an end-to-end encrypted cloud (optional, opt-in)</li>
+      <li>Restore data on another device</li>
+    </ul>
+    <p>The app is available on iOS and Android.</p>
+
+    <h2>2. User account</h2>
+    <h3>2.1 Local mode</h3>
+    <p>By default, using PerfLog requires <strong>no account</strong> or sign-up. All data stays locally on your device, isolated in the app's sandbox and encrypted at rest by the operating system (Data Protection AES-256 on iOS, File-Based Encryption on Android 7+).</p>
+
+    <h3>2.2 Cloud mode (opt-in)</h3>
+    <p>If you enable the <strong>Cloud Backup</strong> feature, you must:</p>
+    <ul>
+      <li>Provide a valid email address (used for OTP authentication)</li>
+      <li>Set a strong passphrase (≥ 12 characters) that <strong>you alone know</strong></li>
+      <li>Keep your 12-word recovery code (generated per BIP-39)</li>
+    </ul>
+    <p><strong>Important</strong>: we have <strong>no access</strong> to your passphrase or recovery code. If you lose them, your encrypted data is <strong>unrecoverable</strong> (E2E architecture). That is the price of privacy.</p>
+
+    <h3>2.3 Account security</h3>
+    <p>You are responsible for:</p>
+    <ul>
+      <li>The confidentiality of your passphrase</li>
+      <li>Keeping your recovery code (paper, password manager, etc.)</li>
+      <li>Access to your email inbox (used for OTP login codes)</li>
+    </ul>
+
+    <h2>3. Acceptable use</h2>
+    <p>You agree to:</p>
+    <ul>
+      <li>Use the app for <strong>personal, non-commercial</strong> purposes</li>
+      <li>Not attempt to circumvent the security mechanisms (cert pinning, encryption)</li>
+      <li>Not use the app to store illegal data</li>
+    </ul>
+    <p>We reserve the right to suspend any cloud account that manifestly abuses the service (DoS, intrusion attempts on the APIs).</p>
+
+    <h2>4. Intellectual property</h2>
+    <h3>4.1 Application</h3>
+    <p>The PerfLog application (source code, design, brand) remains the exclusive property of Vincent BERHOUET.</p>
+
+    <h3>4.2 Exercise catalogue</h3>
+    <p>Part of the built-in exercise catalogue comes from <a href="https://github.com/yuhonas/free-exercise-db" target="_blank">free-exercise-db</a> under the <strong>MIT</strong> license (attribution kept in the source code). The French translations, descriptions and adaptations are the property of Vincent BERHOUET.</p>
+
+    <h3>4.3 Your data</h3>
+    <p><strong>You remain the sole owner of the data you enter</strong> (programs, sessions, measurements). No assignment is made to us. At any time, you can:</p>
+    <ul>
+      <li>Export your data in JSON format (Profile → Export)</li>
+      <li>Delete your data (Settings → Erase all data)</li>
+      <li>Delete your cloud account if enabled (GDPR Art. 17)</li>
+    </ul>
+
+    <h2>5. Limitations of liability</h2>
+    <h3>5.1 Medical advice</h3>
+    <p><strong>PerfLog is not medical advice.</strong> Exercise descriptions are for information only. Consult a healthcare professional before any training program, especially in case of joint, cardiac or musculoskeletal issues.</p>
+    <p>We disclaim all liability for injury resulting from the use of the proposed exercises without professional supervision.</p>
+
+    <h3>5.2 Availability</h3>
+    <p>The app is provided "as is" without warranty of uninterrupted operation. Cloud services may experience temporary outages (Supabase, OVH maintenance, etc.).</p>
+
+    <h3>5.3 Data loss</h3>
+    <p>Although every effort is made to preserve your data:</p>
+    <ul>
+      <li>In <strong>local mode</strong>, loss/reset of the device without cloud backup enabled will cause <strong>permanent</strong> data loss</li>
+      <li>In <strong>cloud mode</strong>, forgetting both your passphrase AND your recovery code will make your backups <strong>unrecoverable</strong> (E2E architecture with no backdoor)</li>
+    </ul>
+    <p>We strongly recommend:</p>
+    <ul>
+      <li>Enabling cloud backup if you care about your data</li>
+      <li>Storing your recovery code in a safe place (paper in a safe, 1Password, etc.)</li>
+      <li>Performing regular JSON exports as a complement</li>
+    </ul>
+
+    <h2>6. Personal data (GDPR)</h2>
+    <p>The processing of your personal data is detailed in our <a href="privacy-policy-en.html">Privacy Policy</a>.</p>
+    <p>Summary:</p>
+    <ul>
+      <li>No analytics tracking, no advertising</li>
+      <li>Local data isolated in the app's sandbox, encrypted at rest by the operating system</li>
+      <li>Optional cloud backup, end-to-end encrypted</li>
+      <li>GDPR rights upheld (access, rectification, erasure, portability, objection)</li>
+      <li>EU hosting (Supabase Frankfurt)</li>
+    </ul>
+    <p>To exercise your rights: <strong><a href="mailto:contact@perflog.app">contact@perflog.app</a></strong></p>
+
+    <h2>7. Account and data deletion</h2>
+    <h3>7.1 Local deletion</h3>
+    <p>Settings → Data → Erase all data.</p>
+    <p>Effect: immediate and irreversible erasure of the local database (SQLite file + rows).</p>
+
+    <h3>7.2 Cloud account deletion</h3>
+    <p>Settings → Cloud backup → Delete my account.</p>
+    <p>Effect: deletion within <strong>30 days</strong> (grace period for cancellation), then effective purge with a GDPR Art. 30 audit (SHA-256 hash kept for 30 days for legal traceability).</p>
+
+    <h3>7.3 Prolonged inactivity</h3>
+    <p>Cloud accounts inactive for <strong>24 months</strong> are automatically marked for deletion with <strong>30 days' notice</strong> (email notification). You can extend via the dedicated button in Settings.</p>
+
+    <h2>8. Changes to the Terms</h2>
+    <p>We may amend these Terms to reflect legal or functional changes. Major changes will be notified through the app or by email (cloud account only).</p>
+    <p>The "Last updated" date at the top of this document indicates the version in force.</p>
+
+    <h2>9. Governing law</h2>
+    <p>These Terms are governed by <strong>French law</strong>. Any dispute will be submitted to the courts having jurisdiction at Vincent BERHOUET's place of residence.</p>
+
+    <h2>10. Contact</h2>
+    <p>For any question about these Terms:</p>
+    <ul>
+      <li><strong>Vincent BERHOUET</strong></li>
+      <li>Email: <a href="mailto:contact@perflog.app">contact@perflog.app</a></li>
+    </ul>
+
+    <footer>
+      <p><strong>Last updated: 6 June 2026</strong></p>
+      <p>These Terms are also available in the app (Settings → Legal notices).</p>
+    </footer>
+  </div>
+</body>
+</html>
